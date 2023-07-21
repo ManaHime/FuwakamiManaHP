@@ -21,7 +21,6 @@ export const DELETE = async ({cookies, request}) => {
     
             
         const res = await deleteBlogPostById(postId, authHeader)
-        console.log(res)
         if(res) return new Response(JSON.stringify({message: "Success"}), {status: 200})
     }
 

@@ -1,10 +1,10 @@
 import { start_mongo } from "$lib/db/db";
 import type { Handle } from '@sveltejs/kit'
-import { getUserId, users } from "$db/users/users";
+import { users } from "$db/users/users";
 
 start_mongo().then(() => {
   console.log("M: Mongo Started")
-}).catch(e => {console.log(e)})
+}).catch(e => {console.error(e)})
 
 function redirect(location: string) {
   return new Response(undefined, {

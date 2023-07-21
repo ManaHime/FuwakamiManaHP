@@ -19,12 +19,10 @@
         password === confirmPassword &&
         (strengthDescription === "Good" ||
         strengthDescription === "OK")
-        ){
-            formDisabled = false
-            console.log(formDisabled)
+    ){
+        formDisabled = false
     } else {
         formDisabled = true
-        console.log(formDisabled)
     }
 
 

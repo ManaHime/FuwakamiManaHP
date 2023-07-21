@@ -7,8 +7,6 @@ export const load: PageServerLoad = async () => {
     const res = await getAllUsers()
     if(res?.response !== "error"){
         const userList = res.userList
-        console.log(userList)
-        console.log(res.userList)
         const userTable: TableSource = {
             head: ['User id', 'Username', 'Email', 'role'],
             body: tableMapperValues(userList, ['_id', 'username', 'email', 'role']),
