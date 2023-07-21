@@ -8,7 +8,6 @@
 	import { page } from '$app/stores'
 	import { enhance } from '$app/forms'
 	import { AppBar, AppShell, Avatar, Drawer, drawerStore } from '@skeletonlabs/skeleton';
-	import type { DrawerSettings } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
 
     import { Modal, modalStore } from '@skeletonlabs/skeleton';

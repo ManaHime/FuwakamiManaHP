@@ -1,5 +1,10 @@
 import { users } from "$db/users/users";
 import { fail, redirect } from "@sveltejs/kit";
+
+import { zxcvbn, zxcvbnOptions, type Score } from "@zxcvbn-ts/core";
+import * as zxcvbnCommonPackage from "@zxcvbn-ts/language-common";
+import * as zxcvbnEnPackage from "@zxcvbn-ts/language-en";
+
 import type { PageServerLoad, Actions } from "./$types";
 import bcrypt from 'bcrypt'
 
@@ -9,6 +14,21 @@ export const load: PageServerLoad = async function({ locals }){
     }
 }
 
+const isPasswordStrenthOk = (password: string) => {
+    const { translations } = zxcvbnEnPackage;
+    const { adjacencyGraphs: graphs, dictionary: commonDictionary } = zxcvbnCommonPackage;
+    const { dictionary: englishDictionary } = zxcvbnEnPackage;
+ 
+    const options = {
+        translations,
+        graphs,
+        dictionary: { ...commonDictionary, ...englishDictionary },
+    };
+    zxcvbnOptions.setOptions(options);
+    const { score } = zxcvbn(password)
+    if (score >= 2) return true
+}
+
 export const actions: Actions = {
     default: async (req) => {
         const data = await req.request.formData()
@@ -16,7 +36,7 @@ export const actions: Actions = {
         const email = data.get('email')
         const rawPassword = data.get('password')
         const confirmPassword = data.get('confirmPassword')
-
+        
         if (
             typeof username !== 'string' ||
             typeof email !== 'string' ||
@@ -26,8 +46,13 @@ export const actions: Actions = {
             !email ||
             !rawPassword ||
             !confirmPassword ||
-            rawPassword !== confirmPassword
+            rawPassword !== confirmPassword ||
+            rawPassword.length < 8
         ){
+            return fail(400, { invalid: true})
+        }
+
+        if(!isPasswordStrenthOk(rawPassword)){
             return fail(400, { invalid: true})
         }
 

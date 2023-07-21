@@ -1,4 +1,8 @@
 <script lang="ts">
+    import { zxcvbn, zxcvbnOptions, type Score } from "@zxcvbn-ts/core";
+    import * as zxcvbnCommonPackage from "@zxcvbn-ts/language-common";
+    import * as zxcvbnEnPackage from "@zxcvbn-ts/language-en";
+ 
     import type { ActionData } from './$types';
     import { enhance } from '$app/forms';
     export let form: ActionData
@@ -12,13 +16,51 @@
     $: if( username !== "" &&
         email !== "" &&
         password !== "" &&
-        password === confirmPassword){
+        password === confirmPassword &&
+        (strengthDescription === "Good" ||
+        strengthDescription === "OK")
+        ){
             formDisabled = false
             console.log(formDisabled)
     } else {
         formDisabled = true
         console.log(formDisabled)
     }
+
+
+
+
+    const { translations } = zxcvbnEnPackage;
+    const { adjacencyGraphs: graphs, dictionary: commonDictionary } = zxcvbnCommonPackage;
+    const { dictionary: englishDictionary } = zxcvbnEnPackage;
+ 
+    const options = {
+        translations,
+        graphs,
+        dictionary: { ...commonDictionary, ...englishDictionary },
+    };
+    zxcvbnOptions.setOptions(options);
+ 
+    $: ({
+        score,
+        feedback: { warning, suggestions },
+    } = zxcvbn(password));
+ 
+    let strengthDescription = "Low";
+    $: switch (score) {
+        case 3:
+        strengthDescription = "OK";
+        break;
+    case 4:
+        strengthDescription = "Good";
+        break;
+    case 0:
+    case 1:
+    case 2:
+    default:
+        strengthDescription = "Low";
+   }
+
 
 </script>
 
@@ -33,6 +75,8 @@
             {/if}
             <input class="text-center input" name="password" placeholder="パスワード" type="password" bind:value={password} required>
             <input class="text-center input" name="confirmPassword" placeholder="もう一回パスワード" type="password" bind:value={confirmPassword} required>
+            <label for="password-strength">Password strength: {strengthDescription}</label>
+            <meter class="w-full" id="password-strength" value={score} low="1.9" high="2.9" optimum="4" max="4" />
             <button class="w-full btn variant-filled-primary" id="registerBtn" type="submit" disabled={formDisabled}>Register</button>
         </form>
     </div>
