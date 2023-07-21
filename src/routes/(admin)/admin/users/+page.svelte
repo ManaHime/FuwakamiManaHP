@@ -11,7 +11,7 @@
 
 </script>
 
-{#if $page.data.user?.role === 'admin'}
+{#if $page.data.user?.role === 'admin' && userTable}
     <div class="max-w-screen-xl m-auto">
         <Table source={userTable} />
     </div>
