@@ -19,12 +19,12 @@ export const getUserId = async (userToken: string) => {
 export const getAllUsers = async () => {
     try {
         const res = await users.find( {}, {projection:{ password: 0, userAuthToken: 0 }} ).toArray()
-        const userList = res.map((item) => JSON.parse(JSON.stringify(item, (key,value) =>
+        const userList:{_id: string, username: string, email: string, role: string}[] = res.map((item) => JSON.parse(JSON.stringify(item, (key,value) =>
         key === '_id' ? value.toString(value) : value)))
-        return { userList }
+        return { response: "ok", userList }
     } catch (err) {
         console.error(err)
-        return null
+        return {response: "error"}
     }   
 }
 

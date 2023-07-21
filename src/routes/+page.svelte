@@ -1,10 +1,6 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
-    export let data
-    
-
-
 </script>
 
 <div class="flex flex-col-reverse gap-5 py-10 place-items-center 2xl:mr-52">

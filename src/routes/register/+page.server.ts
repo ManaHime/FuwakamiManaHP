@@ -1,7 +1,7 @@
 import { users } from "$db/users/users";
 import { fail, redirect } from "@sveltejs/kit";
 
-import { zxcvbn, zxcvbnOptions, type Score } from "@zxcvbn-ts/core";
+import { zxcvbn, zxcvbnOptions } from "@zxcvbn-ts/core";
 import * as zxcvbnCommonPackage from "@zxcvbn-ts/language-common";
 import * as zxcvbnEnPackage from "@zxcvbn-ts/language-en";
 

@@ -1,15 +1,14 @@
 <script lang="ts">
     import type { ActionData } from './$types';
     import { enhance } from '$app/forms';
-    export let form: ActionData
 
     // Rich Text Editor
     import { onMount, onDestroy } from 'svelte'
     import { Editor } from '@tiptap/core'
     import StarterKit from '@tiptap/starter-kit'
 
-    let element
-    let editor
+    let element: Element
+    let editor: Editor
     let postTextBody: string
     $: postTextBody = editor?.getHTML()
     onMount(() => {

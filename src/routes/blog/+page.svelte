@@ -8,16 +8,13 @@
 
     $: ({ posts } = data)
 
-
     const getConfirmModalTriger = (postId: string, authorId: string) => {
-
         return () => modalStore.trigger({
             type: 'confirm',
             title: 'Please Confirm',
             body: 'Are you sure you wish to proceed?',
             response: async (r) => {
                 if(r){
-
                     const res = await fetch('/api/posts', {
                         method: 'DELETE',
                         headers: {
@@ -38,7 +35,6 @@
             }
         })
     }
-
 </script>
 
 <div class="flex flex-col-reverse gap-5 place-items-center 2xl:mr-52">
