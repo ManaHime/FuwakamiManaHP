@@ -81,13 +81,13 @@
                     P
                 </button>
                 <button on:click={setLink} class={editor.isActive('link') ? 'is-active' : ''}>
-                    setLink
+                    Link
                   </button>
                   <button
                     on:click={() => editor.chain().focus().unsetLink().run()}
                     disabled={!editor.isActive('link')}
                   >
-                    unsetLink
+                    Unlink
                   </button>
             </div>
         {/if}
