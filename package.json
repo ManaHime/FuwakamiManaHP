@@ -41,6 +41,7 @@
 	"dependencies": {
 		"@ckeditor/ckeditor5-build-classic": "^38.1.1",
 		"@tiptap/core": "^2.0.3",
+		"@tiptap/extension-link": "^2.0.4",
 		"@tiptap/pm": "^2.0.3",
 		"@tiptap/starter-kit": "^2.0.3",
 		"@zxcvbn-ts/core": "^3.0.3",

@@ -6,6 +6,7 @@
     import { onMount, onDestroy } from 'svelte'
     import { Editor } from '@tiptap/core'
     import StarterKit from '@tiptap/starter-kit'
+    import Link from '@tiptap/extension-link'
 
     let element: Element
     let editor: Editor
@@ -16,6 +17,7 @@
         element: element,
         extensions: [
             StarterKit,
+            Link
         ],
         editorProps: {
             attributes: {
@@ -35,6 +37,27 @@
         }
     })
 
+
+    const setLink = () => {
+        const previousUrl = editor.getAttributes('link').href
+        const url = window.prompt('URL', previousUrl)
+
+        // cancelled
+        if (url === null) {
+            return
+        }
+
+        // empty
+        if (url === '') {
+            editor.chain().focus().extendMarkRange('link').unsetLink()
+                .run()
+            return
+        }
+
+        // update link
+        editor.chain().focus().extendMarkRange('link').setLink({ href: url })
+            .run()
+    }
 </script>
 
 <div class="flex flex-col max-w-md m-auto h-1/2">
@@ -57,6 +80,15 @@
                 >
                     P
                 </button>
+                <button on:click={setLink} class={editor.isActive('link') ? 'is-active' : ''}>
+                    setLink
+                  </button>
+                  <button
+                    on:click={() => editor.chain().focus().unsetLink().run()}
+                    disabled={!editor.isActive('link')}
+                  >
+                    unsetLink
+                  </button>
             </div>
         {/if}
 
