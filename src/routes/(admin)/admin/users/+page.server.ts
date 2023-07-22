@@ -1,7 +1,8 @@
-import type { PageServerLoad } from './$types';
-import { getAllUsers } from '$db/users/users'; 
+import type { PageServerLoad, Actions  } from './$types';
+import { adminEditUser, getAllUsers } from '$db/users/users'; 
 import { tableMapperValues } from '@skeletonlabs/skeleton';
 import type { TableSource } from '@skeletonlabs/skeleton';
+
 
 export const load: PageServerLoad = async () => {
     const res = await getAllUsers()
@@ -15,4 +16,18 @@ export const load: PageServerLoad = async () => {
     }
 }
 
-
+export const actions: Actions = {
+    default: async (req) => {
+        const data = await req.request.formData()
+        const userId = data.get('userId')?.toString()
+        const username = data.get('username')?.toString()
+        const email = data.get('email')?.toString()
+        const role = data.get('role')?.toString()
+        if(userId &&
+            username &&
+            email &&
+            role){
+            await adminEditUser(userId, username, email, role)
+        }
+    }
+}

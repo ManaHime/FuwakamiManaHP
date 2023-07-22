@@ -1,4 +1,5 @@
 import db from "$db/db"
+import { ObjectId } from "mongodb"
 
 export const users = db.collection('users')
 
@@ -38,6 +39,23 @@ export const getUserExists = async (userAuthToken: string) => {
         if(user) return true
         return false
     } catch (err) {
+        console.error(err)
+        return false
+    }
+}
+
+export const adminEditUser = async (userId: string, username: string, email: string, role: string) => {
+    try {
+        const parsedId = new ObjectId(userId)
+        await users.updateOne({_id: parsedId}, {
+            $set: {
+                username,
+                email,
+                role
+            }
+        })
+        return true
+    }catch(err){
         console.error(err)
         return false
     }
