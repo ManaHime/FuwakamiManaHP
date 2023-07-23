@@ -1,62 +1,79 @@
-import db from "$db/db"
-import { ObjectId } from "mongodb"
+import db from '$db/db';
+import { ObjectId } from 'mongodb';
 
-export const users = db.collection('users')
+export const users = db.collection('users');
 
 export const getUserByEmail = async (email: string) => {
-    return await users.findOne({
-        email: email
-    })
-}
+	return await users.findOne({
+		email: email
+	});
+};
 
 export const getUserId = async (userToken: string) => {
-    const userId = await users.findOne({userAuthToken: userToken}, {projection: {_id : 1}})
-    if (userId){
-        return userId._id.toString()
-    }
-    return null
-}
+	const userId = await users.findOne({ userAuthToken: userToken }, { projection: { _id: 1 } });
+	if (userId) {
+		return userId._id.toString();
+	}
+	return null;
+};
 
 export const getAllUsers = async () => {
-    try {
-        const res = await users.find( {}, {projection:{ password: 0, userAuthToken: 0 }} ).toArray()
-        const userList:{_id: string, username: string, email: string, role: string}[] = res.map((item) => JSON.parse(JSON.stringify(item, (key,value) =>
-        key === '_id' ? value.toString(value) : value)))
-        return { response: "ok", userList }
-    } catch (err) {
-        console.error(err)
-        return {response: "error"}
-    }   
-}
+	try {
+		const res = await users.find({}, { projection: { password: 0, userAuthToken: 0 } }).toArray();
+		const userList: { _id: string; username: string; email: string; role: string }[] = res.map(
+			(item) =>
+				JSON.parse(
+					JSON.stringify(item, (key, value) => (key === '_id' ? value.toString(value) : value))
+				)
+		);
+		return { response: 'ok', userList };
+	} catch (err) {
+		console.error(err);
+		return { response: 'error' };
+	}
+};
 
 export const getUserExists = async (userAuthToken: string) => {
-    try {
-        const user = await users.findOne({
-            userAuthToken
-        },{projection: {
-            id_: 1
-        }})
-        if(user) return true
-        return false
-    } catch (err) {
-        console.error(err)
-        return false
-    }
-}
+	try {
+		const user = await users.findOne(
+			{
+				userAuthToken
+			},
+			{
+				projection: {
+					id_: 1
+				}
+			}
+		);
+		if (user) return true;
+		return false;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+};
 
-export const adminEditUser = async (userId: string, username: string, email: string, role: string) => {
-    try {
-        const parsedId = new ObjectId(userId)
-        await users.updateOne({_id: parsedId}, {
-            $set: {
-                username,
-                email,
-                role
-            }
-        })
-        return true
-    }catch(err){
-        console.error(err)
-        return false
-    }
-}
+export const adminEditUser = async (
+	userId: string,
+	username: string,
+	email: string,
+	role: string
+) => {
+	try {
+		const parsedId = new ObjectId(userId);
+		await users.updateOne(
+			{ _id: parsedId },
+			{
+				$set: {
+					username,
+					email,
+					role
+				}
+			}
+		);
+		return true;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
+};

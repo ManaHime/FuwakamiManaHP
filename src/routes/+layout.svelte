@@ -1,22 +1,23 @@
-<script lang='ts'>
+<script lang="ts">
 	// The ordering of these imports is critical to your app working properly
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
-	import { page } from '$app/stores'
-	import { enhance } from '$app/forms'
+	import { page } from '$app/stores';
+	import { enhance } from '$app/forms';
 	import { AppBar, AppShell, Avatar, Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
 
-    import { Modal, modalStore } from '@skeletonlabs/skeleton';
-    import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
+	import { Modal, modalStore } from '@skeletonlabs/skeleton';
+	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
 
 	function drawerOpen(): void {
-		drawerStore.open()
+		drawerStore.open();
 	}
 </script>
+
 <Modal />
 
 <Drawer>
@@ -38,7 +39,9 @@
 				</button>
 			</svelte:fragment>
 			ふわかみ・まな
-			<svelte:fragment slot="trail"><Avatar width="w-10" initials="まな" background="bg-primary-500" /></svelte:fragment>
+			<svelte:fragment slot="trail"
+				><Avatar width="w-10" initials="まな" background="bg-primary-500" /></svelte:fragment
+			>
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
@@ -47,6 +50,10 @@
 			<Navigation />
 		</div>
 	</svelte:fragment>
-	<svelte:fragment slot="pageFooter"><p class="p-2 text-sm text-center 2xl:mr-52">©2023 Fuwakami Mana. All rights reserved.</p></svelte:fragment>
+	<svelte:fragment slot="pageFooter"
+		><p class="p-2 text-sm text-center 2xl:mr-52">
+			©2023 Fuwakami Mana. All rights reserved.
+		</p></svelte:fragment
+	>
 	<slot />
 </AppShell>

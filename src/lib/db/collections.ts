@@ -1,3 +1,3 @@
-import db from "$db/db"
+import db from '$db/db';
 
-export const blogPosts = db.collection('blogposts')
+export const blogPosts = db.collection('blogposts');
