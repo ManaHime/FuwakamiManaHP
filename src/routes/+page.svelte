@@ -39,8 +39,8 @@
 		<div class="flex-1 max-w-full place-items-center">
 			<img
 				class="image drop-shadow shadow-black"
-				src="https://cdn.discordapp.com/attachments/546519231601311761/1108732067296055366/Mana_2Dmodel_002.png"
-				alt="Mana's vtuber avatar"
+				src="https://cdn.discordapp.com/attachments/279068475450982402/1132644429803569193/image.png"
+				alt="Mana's vtuber avatar's silhouette"
 			/>
 		</div>
 	</div>
