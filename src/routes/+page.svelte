@@ -38,7 +38,7 @@
 		</div>
 		<div class="flex-1 max-w-full place-items-center">
 			<img
-				class="image drop-shadow shadow-black"
+				class="opacity-20 image drop-shadow shadow-black blur-[2px]"
 				src="https://cdn.discordapp.com/attachments/279068475450982402/1132644429803569193/image.png"
 				alt="Mana's vtuber avatar's silhouette"
 			/>
