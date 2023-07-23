@@ -19,9 +19,6 @@
 				>ポートフォリオ</a
 			>
 		</li>
-		{#if $page.data?.user?.role === 'admin'}
-			<li><a href="/admin" class={classesActive('/admin')} on:click={closeDrawer}>Admin</a></li>
-		{/if}
 		<li><a href="/contact" class={classesActive('/contact')} on:click={closeDrawer}>Contact</a></li>
 	</ul>
 	<hr>
@@ -33,7 +30,6 @@
 	<hr>
 	<ul>
 		{#if !$page.data.user}
-		<hr />
 			<li><a href="/login" class={classesActive('/login')} on:click={closeDrawer}>Login</a></li>
 			<li>
 				<a href="/register" class={classesActive('/register')} on:click={closeDrawer}>Register</a>
@@ -41,6 +37,9 @@
 		{/if}
 		{#if $page.data.user}
 			<li>
+				{#if $page.data.user.role === 'admin'}
+					<li><a href="/admin" class={classesActive('/admin')} on:click={closeDrawer}>Admin</a></li>
+				{/if}
 				<form action="/logout" method="POST" use:enhance>
 					<button class="w-full" type="submit" on:click={closeDrawer}>Logout</button>
 				</form>
