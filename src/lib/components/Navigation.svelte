@@ -19,14 +19,21 @@
 				>ポートフォリオ</a
 			>
 		</li>
-		<li><a href="https://twitter.com/FuwakamiMana" on:click={closeDrawer}>ツイッター</a></li>
-		<li><a href="https://www.youtube.com/@FuwakamiMana" on:click={closeDrawer}>YouTube</a></li>
-		<li><a href="https://discord.gg/FDymkDsaxk" on:click={closeDrawer}>Discord</a></li>
 		{#if $page.data?.user?.role === 'admin'}
 			<li><a href="/admin" class={classesActive('/admin')} on:click={closeDrawer}>Admin</a></li>
 		{/if}
 		<li><a href="/contact" class={classesActive('/contact')} on:click={closeDrawer}>Contact</a></li>
+	</ul>
+	<hr>
+	<ul>
+		<li><a href="https://twitter.com/FuwakamiMana" on:click={closeDrawer}>ツイッター</a></li>
+		<li><a href="https://www.youtube.com/@FuwakamiMana" on:click={closeDrawer}>YouTube</a></li>
+		<li><a href="https://discord.gg/FDymkDsaxk" on:click={closeDrawer}>Discord</a></li>
+	</ul>
+	<hr>
+	<ul>
 		{#if !$page.data.user}
+		<hr />
 			<li><a href="/login" class={classesActive('/login')} on:click={closeDrawer}>Login</a></li>
 			<li>
 				<a href="/register" class={classesActive('/register')} on:click={closeDrawer}>Register</a>
