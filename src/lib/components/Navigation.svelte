@@ -21,13 +21,13 @@
 		</li>
 		<li><a href="/contact" class={classesActive('/contact')} on:click={closeDrawer}>Contact</a></li>
 	</ul>
-	<hr>
+	<hr />
 	<ul>
 		<li><a href="https://twitter.com/FuwakamiMana" on:click={closeDrawer}>ツイッター</a></li>
 		<li><a href="https://www.youtube.com/@FuwakamiMana" on:click={closeDrawer}>YouTube</a></li>
 		<li><a href="https://discord.gg/FDymkDsaxk" on:click={closeDrawer}>Discord</a></li>
 	</ul>
-	<hr>
+	<hr />
 	<ul>
 		{#if !$page.data.user}
 			<li><a href="/login" class={classesActive('/login')} on:click={closeDrawer}>Login</a></li>

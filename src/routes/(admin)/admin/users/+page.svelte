@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Table, tableMapperValues, tableSourceValues } from '@skeletonlabs/skeleton';
+	import { Table } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types.js';
-	import type { TableSource } from '@skeletonlabs/skeleton';
 	import ModalAdminUserEditForm from '$lib/components/FormModal.svelte';
-	import { Modal, modalStore } from '@skeletonlabs/skeleton';
+	import { modalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
 	export let data: PageData;
 

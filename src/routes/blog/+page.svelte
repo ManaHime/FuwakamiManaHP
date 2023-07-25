@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Modal, modalStore } from '@skeletonlabs/skeleton';
-	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-	import { enhance } from '$app/forms';
-
+	import { modalStore } from '@skeletonlabs/skeleton';
 	export let data;
 
 	$: ({ posts } = data);

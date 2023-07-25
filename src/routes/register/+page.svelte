@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { zxcvbn, zxcvbnOptions, type Score } from '@zxcvbn-ts/core';
+	import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 	import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
 	import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
 
 	import type { ActionData } from './$types';
 	import { enhance } from '$app/forms';
 	export let form: ActionData;
-	let username: string = '';
-	let email: string = '';
-	let password: string = '';
-	let confirmPassword: string = '';
+	let username = '';
+	let email = '';
+	let password = '';
+	let confirmPassword = '';
 	let formDisabled = true;
 
 	$: if (

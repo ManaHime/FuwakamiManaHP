@@ -1,10 +1,3 @@
-<script lang="ts">
-	import { enhance } from '$app/forms';
-	import { page } from '$app/stores';
-
-	let visible: boolean = true;
-</script>
-
 <div class="flex flex-col-reverse gap-5 py-10 place-items-center 2xl:mr-52">
 	<div class="flex w-full max-w-screen-xl p-5 place-content-between card">
 		<div class="flex flex-col">

@@ -6,12 +6,9 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 	import { page } from '$app/stores';
-	import { enhance } from '$app/forms';
 	import { AppBar, AppShell, Avatar, Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
-
-	import { Modal, modalStore } from '@skeletonlabs/skeleton';
-	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
+	import { Modal } from '@skeletonlabs/skeleton';
 
 	function drawerOpen(): void {
 		drawerStore.open();
@@ -39,9 +36,13 @@
 				</button>
 			</svelte:fragment>
 			ふわかみ・まな
-			<svelte:fragment slot="trail"
-				><Avatar width="w-10" initials="まな" background="bg-primary-500" /></svelte:fragment
-			>
+			<svelte:fragment slot="trail">
+				{#if $page.data.user}
+					<Avatar width="w-10" initials="まな" background="bg-primary-500" />
+				{:else}
+					<a href="/login" class="btn variant-filled-primary">Login</a>
+				{/if}
+			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">

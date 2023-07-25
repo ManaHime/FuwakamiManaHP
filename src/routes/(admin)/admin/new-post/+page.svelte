@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { ActionData } from './$types';
 	import { enhance } from '$app/forms';
 
 	// Rich Text Editor
@@ -84,11 +83,21 @@
 				>
 					Unlink
 				</button>
+				<button
+					on:click={() => editor.chain().focus().undo().run()}
+					disabled={!editor.can().chain().focus().undo().run()}
+				>
+					undo
+				</button>
+				<button
+					on:click={() => editor.chain().focus().redo().run()}
+					disabled={!editor.can().chain().focus().redo().run()}
+				>
+					redo
+				</button>
 			</div>
 		{/if}
-
 		<div bind:this={element} />
-
 		<button type="submit" name="postBody" class="btn variant-soft-primary" value={postTextBody}
 			>Submit</button
 		>

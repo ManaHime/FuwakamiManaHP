@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
+	import { TabGroup, TabAnchor } from '@skeletonlabs/skeleton';
 </script>
 
 {#if $page.data.user.role === 'admin'}
