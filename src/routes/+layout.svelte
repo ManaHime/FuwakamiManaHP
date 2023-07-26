@@ -11,7 +11,7 @@
 	import { Modal } from '@skeletonlabs/skeleton';
 	export let data;
 	let translation: any = 'test';
-	translation = data.translation;
+	$: translation = data.translation;
 	function drawerOpen(): void {
 		drawerStore.open();
 	}

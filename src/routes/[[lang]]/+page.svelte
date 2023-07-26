@@ -1,11 +1,11 @@
 <script lang="ts">
 	export let data;
-	const translation = data.translation;
+	$: translation = data.translation;
 </script>
 
 <div class="flex flex-col gap-5 py-10 place-items-center 2xl:mr-52">
 	<div class="flex w-full max-w-screen-xl p-5 place-content-between card">
-		<div class="flex flex-col">
+		<div class="flex flex-col max-w-screen-md">
 			<h1 class="h1 text-clip">{translation.title}</h1>
 			<h2 class="h2">{translation.subTitle}</h2>
 			<div class="flex h-full place-items-center">
@@ -34,7 +34,7 @@
 				</dl>
 			</div>
 		</div>
-		<div class="place-items-center w-[30%]">
+		<div class="max-w-[40%] hidden lg:flex place-items-center">
 			<img
 				class="opacity-20 image drop-shadow shadow-black blur-[2px]"
 				src="https://cdn.discordapp.com/attachments/279068475450982402/1132644429803569193/image.png"
