@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { modalStore } from '@skeletonlabs/skeleton';
+	import TipTapRenderer from '$lib/components/TipTapRenderer.svelte';
 	export let data;
 
 	$: ({ posts } = data);
-
 	const getConfirmModalTriger = (postId: string, authorId: string) => {
 		return () =>
 			modalStore.trigger({
@@ -54,7 +54,9 @@
 				<p class="flex flex-1">Author: {post.author}</p>
 				<p><small>Posted on: {post.date}</small></p>
 			</div>
-			<div class="p-5 card variant-soft whitespace-break-spaces">{@html post.content}</div>
+			<div class="p-5 card variant-soft whitespace-break-spaces">
+				<TipTapRenderer bind:content={post.content} />
+			</div>
 		</div>
 	{/each}
 </div>

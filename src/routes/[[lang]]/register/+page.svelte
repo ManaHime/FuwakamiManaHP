@@ -35,9 +35,7 @@
 	};
 	zxcvbnOptions.setOptions(options);
 
-	$: ({
-		score,
-	} = zxcvbn(password));
+	$: ({ score } = zxcvbn(password));
 
 	let strengthDescription = 'Low';
 	$: switch (score) {

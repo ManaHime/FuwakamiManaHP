@@ -1,7 +1,7 @@
 export const translation = {
 	navigation: {
 		ja: {
-            lang: 'ja',
+			lang: 'ja',
 			home: 'ホーム',
 			blog: 'ブログ',
 			wiki: 'Wiki',
@@ -16,7 +16,7 @@ export const translation = {
 			logout: 'ログアウト'
 		},
 		en: {
-            lang: 'en',
+			lang: 'en',
 			home: 'Home',
 			blog: 'Blog',
 			wiki: 'Wiki',
