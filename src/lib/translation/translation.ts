@@ -1,6 +1,7 @@
 export const translation = {
 	navigation: {
 		ja: {
+            langParam: '/ja',
 			home: 'ホーム',
 			blog: 'ブログ',
 			wiki: 'Wiki',
@@ -15,6 +16,7 @@ export const translation = {
 			logout: 'Logout'
 		},
 		en: {
+            langParam: '/en',
 			home: 'Home',
 			blog: 'Blog',
 			wiki: 'Wiki',
