@@ -10,10 +10,10 @@ export const translation = {
 			twitter: 'ツイッター',
 			youtube: 'YouTube',
 			discord: 'Discord',
-			login: 'Login',
+			login: 'ログイン',
 			register: 'Register',
 			admin: 'Admin',
-			logout: 'Logout'
+			logout: 'ログアウト'
 		},
 		en: {
             lang: 'en',

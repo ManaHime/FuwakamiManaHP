@@ -6,15 +6,31 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 	import { page } from '$app/stores';
-	import { AppBar, AppShell, Avatar, Drawer, drawerStore } from '@skeletonlabs/skeleton';
+	import { AppBar, AppShell, Avatar, Drawer, drawerStore, Modal, popup } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
-	import { Modal } from '@skeletonlabs/skeleton';
+	import type { PopupSettings } from '@skeletonlabs/skeleton';
+
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+	import { storePopup } from '@skeletonlabs/skeleton';
+	import { enhance } from '$app/forms';
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+	
 	export let data;
+	
 	let translation: any = 'test';
 	$: translation = data.translation;
 	function drawerOpen(): void {
 		drawerStore.open();
 	}
+
+	let comboboxValue: string;
+
+	const avatarMenuPopup: PopupSettings = {
+		event: 'focus-click',
+		target: 'avatarMenuPopup',
+		placement: 'bottom',
+		closeQuery: '.listbox-item'
+	};
 </script>
 
 <Modal />
@@ -40,7 +56,19 @@
 			ふわかみ・まな
 			<svelte:fragment slot="trail">
 				{#if $page.data.user}
+				<button class="rounded-full" use:popup={avatarMenuPopup}>
 					<Avatar width="w-10" initials="まな" background="bg-primary-500" />
+				</button>
+				<div class="w-48 py-2 shadow-xl card" data-popup="avatarMenuPopup">
+						<ul class="list-nav">
+							<li>
+								<form action="/logout" method="POST" use:enhance>
+									<button class="w-full !rounded-md" type="submit">{translation.logout}</button
+									>
+								</form>
+							</li>
+						</ul>
+					</div>
 				{:else}
 					<a href="/login" class="btn variant-filled-primary">Login</a>
 				{/if}
