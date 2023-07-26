@@ -9,7 +9,9 @@
 	import { AppBar, AppShell, Avatar, Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { Modal } from '@skeletonlabs/skeleton';
-
+	export let data;
+	let translation: any = 'test';
+	translation = data.translation;
 	function drawerOpen(): void {
 		drawerStore.open();
 	}
@@ -18,7 +20,7 @@
 <Modal />
 
 <Drawer>
-	<Navigation />
+	<Navigation bind:translation />
 </Drawer>
 
 <AppShell slotSidebarLeft="w-0 md:w-52 bg-surface-500/10">
@@ -48,7 +50,7 @@
 	<svelte:fragment slot="sidebarLeft">
 		<!-- Hidden below Tailwind's large breakpoint -->
 		<div id="sidebar-left" class="hidden md:block">
-			<Navigation />
+			<Navigation bind:translation />
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="pageFooter"

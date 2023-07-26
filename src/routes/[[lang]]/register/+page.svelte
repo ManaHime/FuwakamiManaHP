@@ -37,7 +37,6 @@
 
 	$: ({
 		score,
-		feedback: { warning, suggestions }
 	} = zxcvbn(password));
 
 	let strengthDescription = 'Low';
@@ -59,11 +58,11 @@
 <div class="flex flex-wrap h-full place-content-center 2xl:mr-52">
 	<div class="flex flex-row items-center h-full max-w-sm">
 		<div class="flex flex-col justify-around px-8 pb-8 card gap">
-			<h1 class="h1 text-center uppercase p-8">登録</h1>
+			<h1 class="p-8 text-center uppercase h1">登録</h1>
 			<form class="flex flex-col gap-4" method="POST" use:enhance>
-				<div class="border border-surface-500 space-y-4 p-7 rounded-container-token">
+				<div class="space-y-4 border border-surface-500 p-7 rounded-container-token">
 					<input
-						class="text-center input rounded-md"
+						class="text-center rounded-md input"
 						name="username"
 						placeholder="ユーザーネーム"
 						type="text"
@@ -71,7 +70,7 @@
 						required
 					/>
 					<input
-						class="text-center input rounded-md"
+						class="text-center rounded-md input"
 						name="email"
 						placeholder="email@example.com"
 						type="email"
@@ -82,7 +81,7 @@
 						<p class="error">Username is taken.</p>
 					{/if}
 					<input
-						class="text-center input rounded-md"
+						class="text-center rounded-md input"
 						name="password"
 						placeholder="パスワード"
 						type="password"
@@ -90,7 +89,7 @@
 						required
 					/>
 					<input
-						class="text-center input rounded-md"
+						class="text-center rounded-md input"
 						name="confirmPassword"
 						placeholder="もう一回パスワード"
 						type="password"
@@ -109,7 +108,7 @@
 					/>
 				</div>
 				<button
-					class="w-full btn variant-filled-primary rounded-md mt-2"
+					class="w-full mt-2 rounded-md btn variant-filled-primary"
 					id="registerBtn"
 					type="submit"
 					disabled={formDisabled}>Register</button

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 </script>
 
 <h1 class="h1">Wiki</h1>

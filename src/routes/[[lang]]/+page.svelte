@@ -1,35 +1,40 @@
-<div class="flex flex-col-reverse gap-5 py-10 place-items-center 2xl:mr-52">
+<script lang="ts">
+	export let data;
+	const translation = data.translation;
+</script>
+
+<div class="flex flex-col gap-5 py-10 place-items-center 2xl:mr-52">
 	<div class="flex w-full max-w-screen-xl p-5 place-content-between card">
 		<div class="flex flex-col">
-			<h1 class="h1">ウェブ開発、言語学習、映像編集の軌跡を紡ぐ</h1>
-			<h2 class="h2">創造性と学びを織り交ぜたウェブの旅</h2>
+			<h1 class="h1 text-clip">{translation.title}</h1>
+			<h2 class="h2">{translation.subTitle}</h2>
 			<div class="flex h-full place-items-center">
 				<dl class="list-dl">
 					<div>
 						<span class="p-4 badge-icon variant-soft-secondary">📄</span>
 						<span class="flex-auto">
-							<dt class="font-bold">実践リーダーシップ</dt>
-							<dd class="text-sm opacity-50">共同作業で問題解決</dd>
+							<dt class="font-bold">{translation.list[1].title}</dt>
+							<dd class="text-sm opacity-50">{translation.list[1].description}</dd>
 						</span>
 					</div>
 					<div>
 						<span class="p-4 badge-icon variant-soft-secondary">📄</span>
 						<span class="flex-auto">
-							<dt class="font-bold">多言語コミュニケーター</dt>
-							<dd class="text-sm opacity-50">3言語でつながる世界</dd>
+							<dt class="font-bold">{translation.list[2].title}</dt>
+							<dd class="text-sm opacity-50">{translation.list[2].description}</dd>
 						</span>
 					</div>
 					<div>
 						<span class="p-4 badge-icon variant-soft-secondary">📄</span>
 						<span class="flex-auto">
-							<dt class="font-bold">技術的冒険家</dt>
-							<dd class="text-sm opacity-50">最先端技術、一緒に学びましょうか？</dd>
+							<dt class="font-bold">{translation.list[3].title}</dt>
+							<dd class="text-sm opacity-50">{translation.list[3].description}</dd>
 						</span>
 					</div>
 				</dl>
 			</div>
 		</div>
-		<div class="flex-1 max-w-full place-items-center">
+		<div class="place-items-center w-[30%]">
 			<img
 				class="opacity-20 image drop-shadow shadow-black blur-[2px]"
 				src="https://cdn.discordapp.com/attachments/279068475450982402/1132644429803569193/image.png"
