@@ -95,7 +95,9 @@
 				</form>
 			{/if}
 			{#if translation.lang === 'ja'}
-				<li><a href="/en{langPageSwitch[1] ?? $page.url.pathname}" on:click={closeDrawer}>English</a></li>
+				<li>
+					<a href="/en{langPageSwitch[1] ?? $page.url.pathname}" on:click={closeDrawer}>English</a>
+				</li>
 			{:else}
 				<li><a href="/ja{langPageSwitch[1]}" on:click={closeDrawer}>日本語</a></li>
 			{/if}

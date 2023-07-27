@@ -39,7 +39,7 @@
 	{#each posts as post}
 		<div class="w-full max-w-screen-xl p-5 prose xl:prose-2xl card">
 			<div class="flex place-content-between">
-				<h2 class="flex content-between text-4xl card-header h2">{post.title}</h2>
+				<h1 class="flex content-between text-4xl card-header">{post.title}</h1>
 				{#if $page.data.user?.userId === post.authorId}
 					<div>
 						<button
@@ -50,11 +50,11 @@
 					</div>
 				{/if}
 			</div>
-			<div class="mx-5">
-				<p class="flex flex-1">Author: {post.author}</p>
-				<p><small>Posted on: {post.date}</small></p>
+			<div class="flex gap-5 mx-5">
+				<p class="!text-xs">Author: {post.author}</p>
+				<p class="!text-xs">Posted on: {post.date}</p>
 			</div>
-			<div class="p-5 card variant-soft whitespace-break-spaces">
+			<div class="p-5 card variant-soft">
 				<TipTapRenderer bind:content={post.content} />
 			</div>
 		</div>

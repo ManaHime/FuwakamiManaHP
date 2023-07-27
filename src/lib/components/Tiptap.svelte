@@ -31,6 +31,25 @@
 			editor.destroy();
 		}
 	});
+
+	const setLink = () => {
+		const previousUrl = editor.getAttributes('link').href;
+		const url = window.prompt('URL', previousUrl);
+
+		// cancelled
+		if (url === null) {
+			return;
+		}
+
+		// empty
+		if (url === '') {
+			editor.chain().focus().extendMarkRange('link').unsetLink().run();
+			return;
+		}
+
+		// update link
+		editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+	};
 </script>
 
 {#if editor}
@@ -49,50 +68,50 @@
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleBold().run()}
-			class:active={editor.isActive("bold")}
+			class:active={editor.isActive('bold')}
 		>
 			b
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleItalic().run()}
-			class:active={editor.isActive("italic")}
+			class:active={editor.isActive('italic')}
 		>
 			italic
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleStrike().run()}
-			class:active={editor.isActive("strike")}
+			class:active={editor.isActive('strike')}
 			class="line-through"
 		>
 			a
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleCode().run()}
-			class:active={editor.isActive("<>")}
+			class:active={editor.isActive('<>')}
 		>
 			code
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleBulletList().run()}
-			class:active={editor.isActive("bulletList")}
+			class:active={editor.isActive('bulletList')}
 		>
 			bullet list
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleOrderedList().run()}
-			class:active={editor.isActive("orderedList")}
+			class:active={editor.isActive('orderedList')}
 		>
 			ordered list
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleCodeBlock().run()}
-			class:active={editor.isActive("codeBlock")}
+			class:active={editor.isActive('codeBlock')}
 		>
 			code block
 		</button>
 		<button
 			on:click={() => editor.chain().focus().toggleBlockquote().run()}
-			class:active={editor.isActive("blockquote")}
+			class:active={editor.isActive('blockquote')}
 		>
 			blockquote
 		</button>
@@ -100,6 +119,13 @@
 			horizontal rule
 		</button>
 		<button on:click={() => editor.chain().focus().setHardBreak().run()}> hard break </button>
+		<button on:click={setLink} class={editor.isActive('link') ? 'is-active' : ''}> Link </button>
+		<button
+			on:click={() => editor.chain().focus().unsetLink().run()}
+			disabled={!editor.isActive('link')}
+		>
+			Unlink
+		</button>
 		<button
 			on:click={() => editor.chain().focus().undo().run()}
 			disabled={!editor.can().chain().focus().undo().run()}
