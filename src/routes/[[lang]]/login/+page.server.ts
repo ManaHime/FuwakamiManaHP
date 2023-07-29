@@ -35,7 +35,7 @@ export const actions: Actions = {
 		if (authRes) {
 			cookies.set('session', userAuthToken, {
 				httpOnly: true,
-				sameSite: 'strict',
+				sameSite: 'lax',
 				secure: process.env.NODE_ENV === 'production',
 				path: '/',
 				maxAge: 60 * 60 * 24 * 7

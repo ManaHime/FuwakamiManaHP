@@ -50,6 +50,7 @@
 		"bcrypt": "^5.1.0",
 		"ckeditor5-svelte": "^0.0.10",
 		"dotenv": "^16.3.1",
+		"googleapis": "^123.0.0",
 		"mongodb": "^5.7.0",
 		"uuid": "^9.0.0"
 	}

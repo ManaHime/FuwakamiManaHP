@@ -11,6 +11,8 @@
 		>
 		<TabAnchor href="/admin/users" selected={$page.url.pathname === '/admin/users'}>Users</TabAnchor
 		>
+		<TabAnchor href="/admin/discord-bot" selected={$page.url.pathname === '/admin/discord-bot'}>Discord Bot</TabAnchor
+			>
 	</TabGroup>
 	<slot />
 {/if}

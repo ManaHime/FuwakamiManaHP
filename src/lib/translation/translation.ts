@@ -13,7 +13,8 @@ export const translation = {
 			login: 'ログイン',
 			register: 'Register',
 			admin: 'Admin',
-			logout: 'ログアウト'
+			logout: 'ログアウト',
+			livestream: '生放送'
 		},
 		en: {
 			lang: 'en',
@@ -28,7 +29,8 @@ export const translation = {
 			login: 'Login',
 			register: 'Register',
 			admin: 'Admin',
-			logout: 'Logout'
+			logout: 'Logout',
+			livestream: 'Live Stream'
 		}
 	},
 	home: {
