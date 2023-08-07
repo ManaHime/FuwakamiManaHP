@@ -1,7 +1,7 @@
 <script lang="ts">
 	let elemCarousel: HTMLDivElement;
 	const imgIds = ['odder-otter', 'odder-otter-cafe-1', 'odder-otter-cafe-2'];
-	let scrollRightInterval: number;
+	let scrollRightInterval: ReturnType<typeof setInterval>;
 
 	function carouselLeft(): void {
 		if (elemCarousel) {
