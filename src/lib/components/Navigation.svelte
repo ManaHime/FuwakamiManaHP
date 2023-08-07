@@ -64,6 +64,9 @@
 				<a href="/{translation.lang}/live-stream">{translation.livestream}</a>
 			</li>
 			<li>
+				<a href="/{translation.lang}/odderotter">{translation.odderotter}</a>
+			</li>
+			<li>
 				<a href="https://discord.gg/FDymkDsaxk" on:click={closeDrawer}>{translation.discord}</a>
 			</li>
 		</ul>

@@ -1,5 +1,4 @@
 import db from '$db/db';
-import { ObjectId } from 'mongodb';
 
 export const youtube = db.collection('youtube');
 
@@ -7,7 +6,7 @@ export const getYouTubeByUserId = async (userId: string) => {
 	return await youtube.findOne({
 		userId
 	});
-    return null
+	return null;
 };
 
 export const getYouTubeExists = async (userId: string) => {
@@ -30,7 +29,7 @@ export const getYouTubeExists = async (userId: string) => {
 	}
 };
 
-const updateYouTubeToken = async ( userId: string, tokens ) => {
+const updateYouTubeToken = async (userId: string, tokens) => {
 	try {
 		await youtube.updateOne(
 			{ userId },
@@ -48,21 +47,21 @@ const updateYouTubeToken = async ( userId: string, tokens ) => {
 };
 
 export const setStreamUserData = async (userId, tokens, streamData) => {
-    const res = await youtube.insertOne({
-        userId,
+	const res = await youtube.insertOne({
+		userId,
 		tokens,
 		streamData
-    });
-	return res
-}
+	});
+	return res;
+};
 
 export const saveYouTubeToken = async (userId, tokens) => {
-    const isYoutubeLinked = await getYouTubeExists(userId)
-    if(isYoutubeLinked){
-        await updateYouTubeToken(userId, tokens)
-        return true
-    }
-}
+	const isYoutubeLinked = await getYouTubeExists(userId);
+	if (isYoutubeLinked) {
+		await updateYouTubeToken(userId, tokens);
+		return true;
+	}
+};
 
 export const getAllStream = async () => {
 	try {
@@ -71,4 +70,4 @@ export const getAllStream = async () => {
 		console.error(err);
 		return false;
 	}
-}
+};
