@@ -44,6 +44,13 @@
 			</li>
 			<li>
 				<a
+					href="/{translation.lang}/school"
+					class={classesActive('/' + translation.lang + '/contact')}
+					on:click={closeDrawer}>{translation.university}</a
+				>
+			</li>
+			<li>
+				<a
 					href="/{translation.lang}/contact"
 					class={classesActive('/' + translation.lang + '/contact')}
 					on:click={closeDrawer}>{translation.contact}</a

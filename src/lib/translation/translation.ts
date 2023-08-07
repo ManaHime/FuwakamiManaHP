@@ -15,7 +15,8 @@ export const translation = {
 			register: 'アカウントを作成',
 			admin: 'Admin',
 			logout: 'ログアウト',
-			livestream: '生放送'
+			livestream: '生放送',
+			university: '大学'
 		},
 		en: {
 			lang: 'en',
@@ -32,7 +33,8 @@ export const translation = {
 			register: 'Register',
 			admin: 'Admin',
 			logout: 'Logout',
-			livestream: 'Live Stream'
+			livestream: 'Live Stream',
+			university: 'University'
 		}
 	},
 	home: {
