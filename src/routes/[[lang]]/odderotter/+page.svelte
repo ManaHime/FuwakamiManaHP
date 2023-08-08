@@ -24,18 +24,24 @@
 	}
 
 	const autoScrollOff = () => {
-		clearInterval(scrollRightInterval)
-	}
+		clearInterval(scrollRightInterval);
+	};
 	const autoScrollOn = () => {
 		scrollRightInterval = setInterval(carouselRight, 5000);
-	}
+	};
 </script>
 
 <div class="flex flex-col-reverse gap-5 place-items-center 2xl:mr-52">
 	<div class="w-full max-w-screen-lg p-5 prose xl:prose-2xl card">
 		<div class="flex flex-col place-content-between">
 			<img src="/images/odder-otter-community.png" alt="Odder Otter Banner" loading="lazy" />
-			<div class="p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center" on:mouseover={autoScrollOff} on:focus={autoScrollOff} on:mouseout={autoScrollOn} on:blur={autoScrollOn}>
+			<div
+				class="p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center"
+				on:mouseover={autoScrollOff}
+				on:focus={autoScrollOff}
+				on:mouseout={autoScrollOn}
+				on:blur={autoScrollOn}
+			>
 				<!-- Button: Left -->
 				<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
 					<i class="fa-solid fa-arrow-left" />
