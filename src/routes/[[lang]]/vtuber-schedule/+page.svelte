@@ -3,7 +3,7 @@
 	const imgIds = ['odder-otter', 'odder-otter-cafe-1', 'odder-otter-cafe-2'];
 	let scrollRightInterval: ReturnType<typeof setInterval>;
 
-	let scheduleData
+	let scheduleData: any = ""
 </script>
 
 <div class="flex flex-col-reverse gap-5 place-items-center 2xl:mr-52">
@@ -18,9 +18,11 @@
 				Sat <input type="time" name="" id=""> <input type="text" name="" id=""><br>
 				Sun <input type="time" name="" id=""> <input type="text" name="" id="">
 			</form>
-			<textarea>
+			{#if scheduleData.mon.time}
 				{scheduleData.mon.time}
-			</textarea>
+			{/if}
+				
+
 		</div>
 	</div>
 </div>
