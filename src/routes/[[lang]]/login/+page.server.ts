@@ -40,7 +40,7 @@ export const actions: Actions = {
 				path: '/',
 				maxAge: 60 * 60 * 24 * 7
 			});
-			throw redirect(302, '/');
+			redirect(302, '/');
 		}
 	}
 };

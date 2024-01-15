@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
 
 export const load: PageServerLoad = async function ({ locals }) {
 	if (locals.user) {
-		throw redirect(302, '/');
+		redirect(302, '/');
 	}
 };
 
@@ -70,6 +70,6 @@ export const actions: Actions = {
 			password,
 			role: 'user'
 		});
-		throw redirect(303, '/login');
+		redirect(303, '/login');
 	}
 };
