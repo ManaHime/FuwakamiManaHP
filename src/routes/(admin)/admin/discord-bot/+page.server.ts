@@ -9,6 +9,6 @@ export const load = async (params) => {
 			return {};
 		}
 	}
-	const url = getYouTubeURL();
+	const url = await getYouTubeURL();
 	return { url };
 };

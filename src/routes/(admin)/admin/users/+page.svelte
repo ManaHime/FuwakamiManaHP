@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Table } from '@skeletonlabs/skeleton';
+	import { Table, getModalStore } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types.js';
 	import ModalAdminUserEditForm from '$lib/components/FormModal.svelte';
-	import { modalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
 	export let data: PageData;
 
 	$: ({ userTable } = data);
+
+	const modalStore = getModalStore();
 
 	function modalAdminUserEditForm(meta: any): void {
 		const editableUser = {

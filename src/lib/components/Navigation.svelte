@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
-	import { LightSwitch, drawerStore } from '@skeletonlabs/skeleton';
+	import { LightSwitch, getDrawerStore } from '@skeletonlabs/skeleton';
+
+	const drawerStore = getDrawerStore();
 
 	function closeDrawer() {
 		drawerStore.close();

@@ -41,6 +41,8 @@
 				on:focus={autoScrollOff}
 				on:mouseout={autoScrollOn}
 				on:blur={autoScrollOn}
+				role="region"
+				aria-label="Image carousel"
 			>
 				<!-- Button: Left -->
 				<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>

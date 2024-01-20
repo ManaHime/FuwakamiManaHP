@@ -1,4 +1,13 @@
 import db from '$db/db';
+import type { Credentials } from 'google-auth-library';
+
+interface Token {
+	access_token: string;
+	refresh_token: string;
+	scope: string;
+	token_type: string;
+	expiry_date: number;
+}
 
 export const youtube = db.collection('youtube');
 
@@ -6,7 +15,6 @@ export const getYouTubeByUserId = async (userId: string) => {
 	return await youtube.findOne({
 		userId
 	});
-	return null;
 };
 
 export const getYouTubeExists = async (userId: string) => {
@@ -29,7 +37,7 @@ export const getYouTubeExists = async (userId: string) => {
 	}
 };
 
-const updateYouTubeToken = async (userId: string, tokens) => {
+const updateYouTubeToken = async (userId: string, tokens: Credentials) => {
 	try {
 		await youtube.updateOne(
 			{ userId },
@@ -46,7 +54,7 @@ const updateYouTubeToken = async (userId: string, tokens) => {
 	}
 };
 
-export const setStreamUserData = async (userId, tokens, streamData) => {
+export const setStreamUserData = async (userId: string, tokens: Credentials, streamData: any) => {
 	const res = await youtube.insertOne({
 		userId,
 		tokens,
@@ -55,7 +63,7 @@ export const setStreamUserData = async (userId, tokens, streamData) => {
 	return res;
 };
 
-export const saveYouTubeToken = async (userId, tokens) => {
+export const saveYouTubeToken = async (userId: string, tokens: Credentials) => {
 	const isYoutubeLinked = await getYouTubeExists(userId);
 	if (isYoutubeLinked) {
 		await updateYouTubeToken(userId, tokens);

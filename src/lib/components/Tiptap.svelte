@@ -142,10 +142,3 @@
 {/if}
 
 <div bind:this={element} />
-
-<style>
-	button.active {
-		background: black;
-		color: white;
-	}
-</style>

@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { modalStore } from '@skeletonlabs/skeleton';
 	import TipTapRenderer from '$lib/components/TipTapRenderer.svelte';
+	import { getModalStore } from '@skeletonlabs/skeleton';
 	export let data;
+
+	let modalStore = getModalStore();
 
 	$: ({ posts } = data);
 	const getConfirmModalTriger = (postId: string, authorId: string) => {
