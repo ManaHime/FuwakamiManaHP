@@ -2,15 +2,10 @@
 	<div class="flex w-full max-w-screen-xl p-5 place-content-between card">
 		<div class="flex flex-col max-w-screen-md">
 			<h1 class="h1">Fuwakami Knowledge Wiki</h1>
-			<h2 class="h2">Subject</h2>
+			<h2 class="h2">Language Learning</h2>
 			<div class="flex h-full place-items-center">
 				<ul class="list-disc">
-					<li>
-						<a href="wiki/language-learning">Language learning</a>
-						<ul class="list-disc list-inside list-dl">
-							<li><a href="wiki/language-learning/japanese">Japanese</a></li>
-						</ul>
-					</li>
+					<li><a href="language-learning/japanese">Japanese</a></li>
 				</ul>
 			</div>
 		</div>
