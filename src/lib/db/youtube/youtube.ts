@@ -79,3 +79,12 @@ export const getAllStream = async () => {
 		return false;
 	}
 };
+
+export const getAllStreamByUserId = async (userId: string) => {
+	try {
+		return await youtube.find({ userId }, { projection: { _id: 0, streamData: 1 } }).toArray();
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
+};

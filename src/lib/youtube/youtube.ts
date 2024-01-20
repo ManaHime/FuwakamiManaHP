@@ -39,6 +39,7 @@ export const initUserStreamList = async (userId: string, code: string) => {
 		return true;
 	} catch (error) {
 		console.error(error);
+		return false;
 	}
 };
 

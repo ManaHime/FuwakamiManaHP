@@ -11,21 +11,19 @@ export const getUserByEmail = async (email: string) => {
 
 export const getUserId = async (userToken: string) => {
 	const userId = await users.findOne({ userAuthToken: userToken }, { projection: { _id: 1 } });
-	if (userId) {
-		return userId._id.toString();
-	}
+	if (userId) return userId._id.toString();
 	return null;
 };
 
 export const getAllUsers = async () => {
 	try {
 		const res = await users.find({}, { projection: { password: 0, userAuthToken: 0 } }).toArray();
-		const userList: { _id: string; username: string; email: string; role: string }[] = res.map(
-			(item) =>
-				JSON.parse(
-					JSON.stringify(item, (key, value) => (key === '_id' ? value.toString(value) : value))
-				)
-		);
+		const userList = res.map(({ _id, username, email, role }) => ({
+			_id: _id.toString(),
+			username,
+			email,
+			role
+		}));
 		return { response: 'ok', userList };
 	} catch (err) {
 		console.error(err);
@@ -35,18 +33,8 @@ export const getAllUsers = async () => {
 
 export const getUserExists = async (userAuthToken: string) => {
 	try {
-		const user = await users.findOne(
-			{
-				userAuthToken
-			},
-			{
-				projection: {
-					id_: 1
-				}
-			}
-		);
-		if (user) return true;
-		return false;
+		const user = await users.findOne({ userAuthToken }, { projection: { _id: 1 } });
+		return !!user; // !! converts to boolean ( ! makes it false if exist and ! reverses it to true)
 	} catch (err) {
 		console.error(err);
 		return false;
@@ -61,7 +49,7 @@ export const adminEditUser = async (
 ) => {
 	try {
 		const parsedId = new ObjectId(userId);
-		await users.updateOne(
+		const result = await users.updateOne(
 			{ _id: parsedId },
 			{
 				$set: {
@@ -71,7 +59,7 @@ export const adminEditUser = async (
 				}
 			}
 		);
-		return true;
+		return result.modifiedCount === 1;
 	} catch (err) {
 		console.error(err);
 		return false;

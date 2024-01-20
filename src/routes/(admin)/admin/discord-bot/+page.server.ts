@@ -1,4 +1,4 @@
-import { getYouTubeExists } from '$db/youtube/youtube.js';
+import { getAllStreamByUserId, getYouTubeExists } from '$db/youtube/youtube.js';
 import { getYouTubeURL } from '$lib/youtube/youtube';
 
 export const load = async (params) => {
@@ -6,7 +6,17 @@ export const load = async (params) => {
 	if (user) {
 		const isYouTubeAuthed = await getYouTubeExists(user.userId);
 		if (isYouTubeAuthed) {
-			return {};
+			const res = await getAllStreamByUserId(user.userId);
+			if (
+				!Array.isArray(res) ||
+				res.length === 0 ||
+				!res[0].streamData ||
+				!res[0].streamData.items
+			) {
+				return { streamData: [] };
+			}
+			const streamData = res[0].streamData.items;
+			return { streamData };
 		}
 	}
 	const url = await getYouTubeURL();

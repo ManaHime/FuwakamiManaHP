@@ -8,5 +8,5 @@ export const GET: RequestHandler = async (request) => {
 	if (user && code) {
 		await initUserStreamList(user.userId, code);
 	}
-	redirect(302, '/');
+	throw redirect(302, '/');
 };
