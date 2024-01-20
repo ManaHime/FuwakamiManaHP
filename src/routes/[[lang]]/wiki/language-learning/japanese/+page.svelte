@@ -1,9 +1,9 @@
 <div class="flex flex-col gap-5 py-10 place-items-center 2xl:mr-52">
 	<div class="flex w-full max-w-screen-xl p-5 place-content-between card">
-		<div class="flex flex-col max-w-screen-md">
-			<h1 class="h1 pb-5">Fuwakami Knowledge Wiki</h1>
+		<div class="flex flex-col w-full">
+			<h1 class="h1 pb-10">Fuwakami Knowledge Wiki</h1>
 			<div class="flex h-full place-items-center">
-            <div class="flex flex-col max-w-screen-md">
+            <div class="flex flex-col max-w-screen-xl">
 				<h2 class="h2 pb-10">Learning Japanese</h2>
 				<p>
 					For now there will be mostly links to guides related to Learning Japanese from zero. This
