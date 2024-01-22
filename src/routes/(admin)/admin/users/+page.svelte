@@ -10,13 +10,15 @@
 
 	const modalStore = getModalStore();
 
-	function modalAdminUserEditForm(meta: any): void {
-		const editableUser = {
-			userId: meta.detail['0'],
-			userName: meta.detail['1'],
-			email: meta.detail['2'],
-			role: meta.detail['3']
-		};
+	function modalAdminUserEditForm(e: CustomEvent<string[]>): void {
+		const metaDetail = e.detail;
+		if (metaDetail.length !== 4) {
+			console.error('Invalid meta detail');
+			return;
+		}
+		const [userId, userName, email, role] = metaDetail;
+		const editableUser = { userId, userName, email, role };
+
 		const c: ModalComponent = { ref: ModalAdminUserEditForm };
 		const modal: ModalSettings = {
 			type: 'component',

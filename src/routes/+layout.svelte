@@ -88,7 +88,7 @@
 	</svelte:fragment>
 	<svelte:fragment slot="pageFooter"
 		><p class="p-2 text-sm text-center opacity-50 2xl:mr-52">
-			©2023 Fuwakami Mana. All rights reserved.
+			©2023-2024 Fuwakami Mana. All rights reserved.
 		</p></svelte:fragment
 	>
 	<slot />

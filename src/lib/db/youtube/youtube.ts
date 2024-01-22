@@ -1,14 +1,6 @@
 import db from '$db/db';
 import type { Credentials } from 'google-auth-library';
 
-interface Token {
-	access_token: string;
-	refresh_token: string;
-	scope: string;
-	token_type: string;
-	expiry_date: number;
-}
-
 export const youtube = db.collection('youtube');
 
 export const getYouTubeByUserId = async (userId: string) => {
