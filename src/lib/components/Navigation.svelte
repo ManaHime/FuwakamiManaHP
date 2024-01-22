@@ -3,12 +3,31 @@
 	import { enhance } from '$app/forms';
 	import { LightSwitch, getDrawerStore } from '@skeletonlabs/skeleton';
 
+	interface Translation {
+		lang: string;
+		home: string;
+		blog: string;
+		wiki: string;
+		portfolio: string;
+		university: string;
+		contact: string;
+		twitter: string;
+		youtube: string;
+		livestream: string;
+		odderotter: string;
+		discord: string;
+		login: string;
+		register: string;
+		admin: string;
+		logout: string;
+	}
+
 	const drawerStore = getDrawerStore();
 
 	function closeDrawer() {
 		drawerStore.close();
 	}
-	export let translation: any;
+	export let translation: Translation;
 	$: classesActive = (href: string) => (href === $page.url.pathname ? '!variant-soft-primary' : '');
 	$: langPageSwitch = $page.url.pathname.split(translation.lang);
 </script>

@@ -1,19 +1,19 @@
 import db from '$db/db';
 import { ObjectId } from 'mongodb';
 
-const BlogPosts = db.collection('blogposts');
+export const BlogPosts = db.collection('blogposts');
 
 export interface BlogPost {
-    author: string;
-    authorId: string;
-    date?: Date;
-    title: string;
-    content: string;
+	author: string;
+	authorId: string;
+	date?: Date;
+	title: string;
+	content: string;
 }
 
 export const addBlogPost = async (blogPost: BlogPost) => {
-    await BlogPosts.insertOne(blogPost);
-}
+	await BlogPosts.insertOne(blogPost);
+};
 
 export const deleteBlogPostById = async (blogPost: string, authorId: string) => {
 	try {
@@ -28,4 +28,3 @@ export const deleteBlogPostById = async (blogPost: string, authorId: string) => 
 		return false;
 	}
 };
-

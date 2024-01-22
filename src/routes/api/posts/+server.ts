@@ -1,7 +1,8 @@
 import { deleteBlogPostById } from '$db/blog/blog.js';
 import { getUserExists } from '$db/users/users.js';
+import type { Cookies } from '@sveltejs/kit';
 
-export const DELETE = async ({ cookies, request }) => {
+export const DELETE = async ({ cookies, request }: { cookies: Cookies; request: Request }) => {
 	const session = cookies.get('session');
 	if (session) {
 		const isAuthedUser = await getUserExists(session);
@@ -24,11 +25,3 @@ export const DELETE = async ({ cookies, request }) => {
 
 	return new Response(JSON.stringify({ message: 'Unknown error' }), { status: 400 });
 };
-
-// default: (req) => async {
-//     const data = await req.request.formData()
-//     const postToDelete = data.get('postToDel')
-//     await deleteBlogPostById(postToDelete)
-// }
-
-// export const getUserId = async (userToken)

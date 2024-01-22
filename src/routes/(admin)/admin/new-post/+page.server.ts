@@ -11,18 +11,18 @@ export const actions: Actions = {
 			return fail(400, { invalid: true });
 		}
 
-        const blogPost: BlogPost = {
-            title,
-            content,
-            author: locals.user.name,
-            authorId: locals.user.userId,
-            date: new Date()
-        };
-        try {
-            await addBlogPost(blogPost);
-        } catch (err) {
-            console.error(err);
-        }
-        redirect(303, '/admin');
+		const blogPost: BlogPost = {
+			title,
+			content,
+			author: locals.user.name,
+			authorId: locals.user.userId,
+			date: new Date()
+		};
+		try {
+			await addBlogPost(blogPost);
+		} catch (err) {
+			console.error(err);
+		}
+		redirect(303, '/admin');
 	}
 };
