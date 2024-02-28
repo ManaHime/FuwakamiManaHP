@@ -2,33 +2,39 @@ import db from '$db/db';
 import { ObjectId } from 'mongodb';
 
 export interface User {
-    _id: string;
-    username: string;
-    email: string;
-    role: 'admin' | 'user';
+	_id: string;
+	username: string;
+	email: string;
+	role: 'admin' | 'user';
 }
 
 export const users = db.collection('users');
 const userAuthTokens = db.collection('userAuthTokens');
 
 export const getUserByEmail = async (email: string) => {
-	return await users.findOne({email});
+	return await users.findOne({ email });
 };
 
 export const getUserBySession = async (userAuthToken: string) => {
-    const tokenDoc = await userAuthTokens.findOne({ token: userAuthToken });
-    if (!tokenDoc) return null;
-    return await users.findOne({
-        _id: tokenDoc.userId
-    }, { 
-        projection: { password: 0 }
-    });
-}
+	const tokenDoc = await userAuthTokens.findOne({ token: userAuthToken });
+	if (!tokenDoc) return null;
+	return await users.findOne(
+		{
+			_id: tokenDoc.userId
+		},
+		{
+			projection: { password: 0 }
+		}
+	);
+};
 
 export const getUserId = async (userToken: string) => {
-    const userId = await users.findOne({ userAuthTokens: { $in: [userToken] } }, { projection: { _id: 1 } });
-    if (userId) return userId._id.toString();
-    return null;
+	const userId = await users.findOne(
+		{ userAuthTokens: { $in: [userToken] } },
+		{ projection: { _id: 1 } }
+	);
+	if (userId) return userId._id.toString();
+	return null;
 };
 
 export const getAllUsers = async () => {
@@ -49,7 +55,10 @@ export const getAllUsers = async () => {
 
 export const getUserExists = async (userAuthToken: string) => {
 	try {
-		const user = await users.findOne({ userAuthTokens: { $in: [userAuthToken] } }, { projection: { _id: 1 } });
+		const user = await users.findOne(
+			{ userAuthTokens: { $in: [userAuthToken] } },
+			{ projection: { _id: 1 } }
+		);
 		return !!user; // !! converts to boolean ( ! makes it false if exist and ! reverses it to true)
 	} catch (err) {
 		console.error(err);
@@ -83,29 +92,29 @@ export const adminEditUser = async (
 };
 
 export const addUserAuthToken = async (userId: string, token: string) => {
-    try {
-        const now = new Date();
-        const result = await userAuthTokens.insertOne({
-            userId: new ObjectId(userId),
-            token: token,
-            createdAt: now
-        });
-        return result.acknowledged;
-    } catch (err) {
-        console.error(err);
-        return false;
-    }
+	try {
+		const now = new Date();
+		const result = await userAuthTokens.insertOne({
+			userId: new ObjectId(userId),
+			token: token,
+			createdAt: now
+		});
+		return result.acknowledged;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 };
 
 export const removeUserAuthToken = async (userId: string, token: string) => {
-    try {
-        const result = await userAuthTokens.deleteOne({
-            userId: new ObjectId(userId),
-            token: token
-        });
-        return result.deletedCount === 1;
-    } catch (err) {
-        console.error(err);
-        return false;
-    }
+	try {
+		const result = await userAuthTokens.deleteOne({
+			userId: new ObjectId(userId),
+			token: token
+		});
+		return result.deletedCount === 1;
+	} catch (err) {
+		console.error(err);
+		return false;
+	}
 };

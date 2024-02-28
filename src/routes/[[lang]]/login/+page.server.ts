@@ -4,8 +4,7 @@ import bcrypt from 'bcrypt';
 import type { Actions } from './$types';
 import { LoginTranslation } from '$lib/translation/translation';
 
-import { addUserAuthToken, getUserByEmail, users } from '$db/users/users';
-import type { User } from '$db/users/users';
+import { addUserAuthToken, getUserByEmail } from '$db/users/users';
 
 export const load: Load = async ({ params }) => {
 	const lang = params.lang ?? 'ja';
@@ -32,13 +31,13 @@ export const actions: Actions = {
 		if (!user) {
 			return fail(400, { credentials: true });
 		}
-        
+
 		const userPassword = await bcrypt.compare(password, user.password);
 		if (!userPassword) {
 			return fail(400, { credentials: true });
 		}
 		const userAuthToken = crypto.randomUUID();
-        const authSuccess = await addUserAuthToken(user._id.toString(), userAuthToken);
+		const authSuccess = await addUserAuthToken(user._id.toString(), userAuthToken);
 		if (authSuccess) {
 			cookies.set('session', userAuthToken, {
 				httpOnly: true,
