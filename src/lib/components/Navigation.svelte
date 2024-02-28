@@ -3,9 +3,10 @@
 	import { enhance } from '$app/forms';
 	import { LightSwitch, getDrawerStore } from '@skeletonlabs/skeleton';
 
-	interface Translation {
+	interface NavTranslation {
 		lang: string;
 		home: string;
+        chattori: string;
 		blog: string;
 		wiki: string;
 		portfolio: string;
@@ -27,7 +28,7 @@
 	function closeDrawer() {
 		drawerStore.close();
 	}
-	export let translation: Translation;
+	export let translation: NavTranslation;
 	$: classesActive = (href: string) => (href === $page.url.pathname ? '!variant-soft-primary' : '');
 	$: langPageSwitch = $page.url.pathname.split(translation.lang);
 </script>
@@ -42,6 +43,12 @@
 					on:click={closeDrawer}>{translation.home}</a
 				>
 			</li>
+            <li>
+                <a
+                    href="/{translation.lang}/chattori"
+                    class={classesActive('/' + translation.lang + '/chattori')}
+                    on:click={closeDrawer}>{translation.chattori}</a
+                >
 			<li>
 				<a
 					href="/{translation.lang}/blog"

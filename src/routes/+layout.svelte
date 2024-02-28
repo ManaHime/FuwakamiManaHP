@@ -25,7 +25,7 @@
 	export let data;
 	const drawerStore = getDrawerStore();
 
-	let translation: any = 'test';
+	let translation: any = '';
 	$: translation = data.translation;
 	function drawerOpen(): void {
 		drawerStore.open();
@@ -37,6 +37,13 @@
 		placement: 'bottom',
 		closeQuery: '.listbox-item'
 	};
+    const getUserInitial = () => {
+        console.log(data.user);
+        if (data.user) {
+            return data.user.name.split(' ').map((n) => n[0]).join('');
+        }
+        return '';
+    };
 </script>
 
 <Modal />
@@ -63,7 +70,11 @@
 			<svelte:fragment slot="trail">
 				{#if $page.data.user}
 					<button class="rounded-full" use:popup={avatarMenuPopup}>
-						<Avatar width="w-10" initials="まな" background="bg-primary-500" />
+                    {#if $page.data.user.avatar}
+                        <Avatar width="w-10" src={$page.data.user.avatar} />
+                    {:else}
+						<Avatar width="w-10" initials={getUserInitial()} background="bg-primary-500" />
+                    {/if}
 					</button>
 					<div class="w-48 py-2 shadow-xl card" data-popup="avatarMenuPopup">
 						<ul class="list-nav">

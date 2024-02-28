@@ -1,8 +1,23 @@
+import type { Load } from '@sveltejs/kit';
 import { fail, redirect } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import type { Actions } from './$types';
+import { LoginTranslation } from '$lib/translation/translation';
 
-import { getUserByEmail, users } from '$db/users/users';
+import { addUserAuthToken, getUserByEmail, users } from '$db/users/users';
+import type { User } from '$db/users/users';
+
+export const load: Load = async ({ params }) => {
+	const lang = params.lang ?? 'ja';
+	if (lang === 'ja') {
+		return {
+			translation: LoginTranslation.ja
+		};
+	}
+	return {
+		translation: LoginTranslation.en
+	};
+};
 
 export const actions: Actions = {
 	default: async ({ cookies, request }) => {
@@ -17,22 +32,14 @@ export const actions: Actions = {
 		if (!user) {
 			return fail(400, { credentials: true });
 		}
+        
 		const userPassword = await bcrypt.compare(password, user.password);
 		if (!userPassword) {
 			return fail(400, { credentials: true });
 		}
 		const userAuthToken = crypto.randomUUID();
-		const authRes = await users.updateOne(
-			{
-				email: email
-			},
-			{
-				$set: {
-					userAuthToken
-				}
-			}
-		);
-		if (authRes) {
+        const authSuccess = await addUserAuthToken(user._id.toString(), userAuthToken);
+		if (authSuccess) {
 			cookies.set('session', userAuthToken, {
 				httpOnly: true,
 				sameSite: 'lax',
@@ -40,7 +47,7 @@ export const actions: Actions = {
 				path: '/',
 				maxAge: 60 * 60 * 24 * 7
 			});
-			redirect(302, '/');
+			return redirect(302, '/');
 		}
 	}
 };
