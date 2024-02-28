@@ -52,6 +52,16 @@
 						<option value="user">user</option>
 					</select>
 				</label>
+				<label class="label">
+					<span>アバター</span>
+					<input
+						class="input"
+						type="text"
+						name="avatar"
+						bind:value={formData.avatar}
+						placeholder="アバター"
+					/>
+				</label>
 			</div>
 			<footer class="modal-footer {parent.regionFooter} pt-4">
 				<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}

@@ -1,13 +1,6 @@
 import db from '$db/db';
 import { ObjectId } from 'mongodb';
 
-export interface User {
-	_id: string;
-	username: string;
-	email: string;
-	role: 'admin' | 'user';
-}
-
 export const userCollection = db.collection('users');
 const userAuthTokens = db.collection('userAuthTokens');
 
@@ -39,12 +32,15 @@ export const getUserId = async (userToken: string) => {
 
 export const getAllUsers = async () => {
 	try {
-		const res = await userCollection.find({}, { projection: { password: 0, userAuthToken: 0 } }).toArray();
-		const userList = res.map(({ _id, username, email, role }) => ({
+		const res = await userCollection
+			.find({}, { projection: { password: 0, userAuthToken: 0 } })
+			.toArray();
+		const userList = res.map(({ _id, username, email, role, avatar }) => ({
 			_id: _id.toString(),
 			username,
 			email,
-			role
+			role,
+			avatar
 		}));
 		return { response: 'ok', userList };
 	} catch (err) {
@@ -70,7 +66,8 @@ export const adminEditUser = async (
 	userId: string,
 	username: string,
 	email: string,
-	role: string
+	role: string,
+	avatar: string
 ) => {
 	try {
 		const parsedId = new ObjectId(userId);
@@ -80,7 +77,8 @@ export const adminEditUser = async (
 				$set: {
 					username,
 					email,
-					role
+					role,
+					avatar
 				}
 			}
 		);
@@ -117,4 +115,14 @@ export const removeUserAuthToken = async (userId: string, token: string) => {
 		console.error(err);
 		return false;
 	}
+};
+
+export const addUser = async (username: string, email: string, password: string) => {
+	await userCollection.insertOne({
+		username,
+		email,
+		password,
+		role: 'user',
+		avatar: ''
+	});
 };
