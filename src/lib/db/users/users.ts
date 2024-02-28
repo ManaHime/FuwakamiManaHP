@@ -8,17 +8,17 @@ export interface User {
 	role: 'admin' | 'user';
 }
 
-export const users = db.collection('users');
+export const userCollection = db.collection('users');
 const userAuthTokens = db.collection('userAuthTokens');
 
 export const getUserByEmail = async (email: string) => {
-	return await users.findOne({ email });
+	return await userCollection.findOne({ email });
 };
 
 export const getUserBySession = async (userAuthToken: string) => {
 	const tokenDoc = await userAuthTokens.findOne({ token: userAuthToken });
 	if (!tokenDoc) return null;
-	return await users.findOne(
+	return await userCollection.findOne(
 		{
 			_id: tokenDoc.userId
 		},
@@ -29,7 +29,7 @@ export const getUserBySession = async (userAuthToken: string) => {
 };
 
 export const getUserId = async (userToken: string) => {
-	const userId = await users.findOne(
+	const userId = await userCollection.findOne(
 		{ userAuthTokens: { $in: [userToken] } },
 		{ projection: { _id: 1 } }
 	);
@@ -39,7 +39,7 @@ export const getUserId = async (userToken: string) => {
 
 export const getAllUsers = async () => {
 	try {
-		const res = await users.find({}, { projection: { password: 0, userAuthToken: 0 } }).toArray();
+		const res = await userCollection.find({}, { projection: { password: 0, userAuthToken: 0 } }).toArray();
 		const userList = res.map(({ _id, username, email, role }) => ({
 			_id: _id.toString(),
 			username,
@@ -55,7 +55,7 @@ export const getAllUsers = async () => {
 
 export const getUserExists = async (userAuthToken: string) => {
 	try {
-		const user = await users.findOne(
+		const user = await userCollection.findOne(
 			{ userAuthTokens: { $in: [userAuthToken] } },
 			{ projection: { _id: 1 } }
 		);
@@ -74,7 +74,7 @@ export const adminEditUser = async (
 ) => {
 	try {
 		const parsedId = new ObjectId(userId);
-		const result = await users.updateOne(
+		const result = await userCollection.updateOne(
 			{ _id: parsedId },
 			{
 				$set: {
