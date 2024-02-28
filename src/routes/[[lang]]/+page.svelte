@@ -37,8 +37,8 @@
 		<div class="max-w-[40%] hidden lg:flex place-items-center">
 			<img
 				class="image drop-shadow shadow-black"
-				src="https://cdn.discordapp.com/attachments/546519231601311761/1108732067296055366/Mana_2Dmodel_002.png"
-				alt="Mana's vtuber avatar's silhouette"
+				src="/images/fuwakami_mana.png"
+				alt="Fuwakami Mana"
 			/>
 		</div>
 	</div>
