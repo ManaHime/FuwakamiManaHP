@@ -7,11 +7,21 @@ import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
 
 import type { PageServerLoad, Actions } from './$types';
 import bcrypt from 'bcrypt';
+import { RegistrationTranslation } from '$lib/translation/translation';
 
-export const load: PageServerLoad = async function ({ locals }) {
+export const load: PageServerLoad = async function ({ locals, params }) {
 	if (locals.user) {
 		redirect(302, '/');
 	}
+	const lang = params.lang ?? 'ja';
+	if (lang === 'ja') {
+		return {
+			translation: RegistrationTranslation.ja
+		};
+	}
+	return {
+		translation: RegistrationTranslation.en
+	};
 };
 
 const isPasswordStrenthOk = (password: string) => {

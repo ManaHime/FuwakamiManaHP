@@ -30,7 +30,7 @@ export const LoginTranslation = {
 	en: {
 		title: 'Login',
 		subTitle: 'Login and join the community!',
-		email: 'mail@examplecom',
+		email: 'mail@example.com',
 		password: 'Password',
 		submit: 'Login'
 	}

@@ -6,6 +6,10 @@
 	import type { ActionData } from './$types';
 	import { enhance } from '$app/forms';
 	export let form: ActionData;
+
+	export let data;
+	$: translation = data.translation;
+
 	let username = '';
 	let email = '';
 	let password = '';
@@ -56,13 +60,13 @@
 <div class="flex flex-wrap h-full place-content-center 2xl:mr-52">
 	<div class="flex flex-row items-center h-full max-w-sm">
 		<div class="flex flex-col justify-around px-8 pb-8 card gap">
-			<h1 class="p-8 text-center uppercase h1">登録</h1>
+			<h1 class="p-8 text-center uppercase h1">{translation.title}</h1>
 			<form class="flex flex-col gap-4" method="POST" use:enhance>
 				<div class="space-y-4 border border-surface-500 p-7 rounded-container-token">
 					<input
 						class="text-center rounded-md input"
 						name="username"
-						placeholder="ユーザーネーム"
+						placeholder={translation.username}
 						type="text"
 						bind:value={username}
 						required
@@ -70,7 +74,7 @@
 					<input
 						class="text-center rounded-md input"
 						name="email"
-						placeholder="email@example.com"
+						placeholder={translation.email}
 						type="email"
 						bind:value={email}
 						required
@@ -81,7 +85,7 @@
 					<input
 						class="text-center rounded-md input"
 						name="password"
-						placeholder="パスワード"
+						placeholder={translation.password}
 						type="password"
 						bind:value={password}
 						required
@@ -89,7 +93,7 @@
 					<input
 						class="text-center rounded-md input"
 						name="confirmPassword"
-						placeholder="もう一回パスワード"
+						placeholder={translation.confirmPassword}
 						type="password"
 						bind:value={confirmPassword}
 						required
@@ -109,7 +113,7 @@
 					class="w-full mt-2 rounded-md btn variant-filled-primary"
 					id="registerBtn"
 					type="submit"
-					disabled={formDisabled}>Register</button
+					disabled={formDisabled}>{translation.submit}</button
 				>
 			</form>
 		</div>

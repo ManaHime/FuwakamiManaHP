@@ -4,8 +4,7 @@ import bcrypt from 'bcrypt';
 import type { Actions } from './$types';
 import { LoginTranslation } from '$lib/translation/translation';
 
-import { addUserAuthToken, getUserByEmail, users } from '$db/users/users';
-import type { User } from '$db/users/users';
+import { addUserAuthToken, getUserByEmail } from '$db/users/users';
 
 export const load: Load = async ({ params }) => {
 	const lang = params.lang ?? 'ja';
