@@ -1,6 +1,6 @@
 import { start_mongo } from '$lib/db/db';
 import type { Handle } from '@sveltejs/kit';
-import { users } from '$db/users/users';
+import { getUserBySession, users } from '$db/users/users';
 
 start_mongo()
 	.then(() => {
@@ -30,16 +30,15 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	// find the user based on the session
-	const user = await users.findOne({
-		userAuthToken: session
-	});
+	const user = await getUserBySession(session); 
 
 	// if `user` exists set `events.local`
 	if (user) {
 		event.locals.user = {
 			userId: user._id.toString(),
 			name: user.username,
-			role: user.role
+			role: user.role,
+            avatar: user.avatar
 		};
 		if (event.url.pathname.startsWith('/admin') && user.role !== 'admin') {
 			return redirect('/');

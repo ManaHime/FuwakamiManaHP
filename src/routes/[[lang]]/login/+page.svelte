@@ -3,6 +3,9 @@
 	import { enhance } from '$app/forms';
 
 	export let form: ActionData;
+
+  	export let data;
+	$: translation = data.translation;
 </script>
 
 <div class="flex flex-wrap h-full place-content-center 2xl:mr-52">
@@ -14,7 +17,7 @@
 					<input
 						name="email"
 						type="email"
-						placeholder="email@example.com"
+						placeholder={translation.email}
 						class="rounded-md input"
 					/>
 					<input

@@ -1,5 +1,5 @@
 import type { LayoutServerLoad } from './$types';
-import { translation } from '$lib/translation/translation';
+import { NavTranslation } from '$lib/translation/translation';
 
 // get `locals.user` and pass it to the `page` store
 export const load: LayoutServerLoad = async ({ locals, params }) => {
@@ -7,11 +7,11 @@ export const load: LayoutServerLoad = async ({ locals, params }) => {
 	if (lang === 'ja') {
 		return {
 			user: locals.user,
-			translation: translation.navigation.ja
+			translation: NavTranslation.ja
 		};
 	}
 	return {
 		user: locals.user,
-		translation: translation.navigation.en
+		translation: NavTranslation.en
 	};
 };
