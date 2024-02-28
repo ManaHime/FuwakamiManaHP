@@ -4,7 +4,7 @@
 
 	export let form: ActionData;
 
-  	export let data;
+	export let data;
 	$: translation = data.translation;
 </script>
 

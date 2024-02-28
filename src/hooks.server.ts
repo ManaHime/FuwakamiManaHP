@@ -30,7 +30,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	// find the user based on the session
-	const user = await getUserBySession(session); 
+	const user = await getUserBySession(session);
 
 	// if `user` exists set `events.local`
 	if (user) {
@@ -38,7 +38,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			userId: user._id.toString(),
 			name: user.username,
 			role: user.role,
-            avatar: user.avatar
+			avatar: user.avatar
 		};
 		if (event.url.pathname.startsWith('/admin') && user.role !== 'admin') {
 			return redirect('/');

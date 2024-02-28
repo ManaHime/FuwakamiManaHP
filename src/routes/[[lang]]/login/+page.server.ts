@@ -32,13 +32,13 @@ export const actions: Actions = {
 		if (!user) {
 			return fail(400, { credentials: true });
 		}
-        
+
 		const userPassword = await bcrypt.compare(password, user.password);
 		if (!userPassword) {
 			return fail(400, { credentials: true });
 		}
 		const userAuthToken = crypto.randomUUID();
-        const authSuccess = await addUserAuthToken(user._id.toString(), userAuthToken);
+		const authSuccess = await addUserAuthToken(user._id.toString(), userAuthToken);
 		if (authSuccess) {
 			cookies.set('session', userAuthToken, {
 				httpOnly: true,
