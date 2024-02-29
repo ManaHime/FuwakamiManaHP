@@ -3,6 +3,8 @@ export const getPreferredLanguage = (header: string | null): Language | null => 
     return preferredLanguages.length > 0 ? preferredLanguages[0] : null;
 };
 
+type Language = 'en' | 'ja';
+
 const parseAcceptLanguage = (header: string | null): Language[] => {
     if (!header) return [];
     return header.split(',')
