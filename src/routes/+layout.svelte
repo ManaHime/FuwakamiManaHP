@@ -37,7 +37,6 @@
 		placement: 'bottom',
 	};
 	const getUserInitial = () => {
-		console.log(data.user);
 		if (data.user) {
 			return data.user.name
 				.split(' ')
