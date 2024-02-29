@@ -1,21 +1,18 @@
-import type { Load } from '@sveltejs/kit';
 import { fail, redirect } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import type { Actions } from './$types';
 import { LoginTranslation } from '$lib/translation/translation';
+import { getPreferredLanguage } from '$lib/translation/language';
 
 import { addUserAuthToken, getUserByEmail } from '$db/users/users';
 
-export const load: Load = async ({ params }) => {
-	const lang = params.lang ?? 'ja';
-	if (lang === 'ja') {
-		return {
-			translation: LoginTranslation.ja
-		};
-	}
+type Language = keyof typeof LoginTranslation;
+
+export const load = async ({ params, request }) => {
+	const lang: Language = (params.lang as Language) || getPreferredLanguage(request.headers.get('accept-language')) || 'en';
 	return {
-		translation: LoginTranslation.en
-	};
+        translation: LoginTranslation[lang],
+    };
 };
 
 export const actions: Actions = {

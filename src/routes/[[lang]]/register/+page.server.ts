@@ -6,23 +6,21 @@ import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
 import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
 
-import type { PageServerLoad, Actions } from './$types';
+import type { Actions } from './$types';
 import bcrypt from 'bcrypt';
 import { RegistrationTranslation } from '$lib/translation/translation';
+import { getPreferredLanguage } from '$lib/translation/language';
 
-export const load: PageServerLoad = async function ({ locals, params }) {
+type Language = keyof typeof RegistrationTranslation;
+
+export const load = async function ({ locals, params, request }) {
 	if (locals.user) {
 		redirect(302, '/');
 	}
-	const lang = params.lang ?? 'ja';
-	if (lang === 'ja') {
-		return {
-			translation: RegistrationTranslation.ja
-		};
-	}
+	const lang: Language = (params.lang as Language) || getPreferredLanguage (request.headers.get('accept-language')) || 'en';
 	return {
-		translation: RegistrationTranslation.en
-	};
+        translation: RegistrationTranslation[lang],
+    };
 };
 
 const isPasswordStrenthOk = (password: string) => {

@@ -30,7 +30,7 @@
 	}
 	export let translation: NavTranslation;
 	$: classesActive = (href: string) => (href === $page.url.pathname ? '!variant-soft-primary' : '');
-	$: langPageSwitch = $page.url.pathname.split(translation.lang);
+	$: langPageSwitch = $page.url.pathname.replace(`/${translation.lang}`, '') || '/';
 </script>
 
 {#key $page.params}
@@ -138,10 +138,12 @@
 			{/if}
 			{#if translation.lang === 'ja'}
 				<li>
-					<a href="/en{langPageSwitch[1] ?? $page.url.pathname}" on:click={closeDrawer}>English</a>
+					<a href="/en{langPageSwitch}" on:click={closeDrawer}>English</a>
 				</li>
 			{:else}
-				<li><a href="/ja{langPageSwitch[1]}" on:click={closeDrawer}>日本語</a></li>
+				<li>
+					<a href="/ja{langPageSwitch}" on:click={closeDrawer}>日本語</a>
+				</li>
 			{/if}
 
 			<li><LightSwitch on:click={closeDrawer} /></li>
