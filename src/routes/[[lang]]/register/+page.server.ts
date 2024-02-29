@@ -1,5 +1,6 @@
-import { users } from '$db/users/users';
 import { fail, redirect } from '@sveltejs/kit';
+
+import { addUser, getUserExists } from '$lib/db/users/users';
 
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
@@ -66,20 +67,12 @@ export const actions: Actions = {
 			return fail(400, { invalid: true });
 		}
 
-		const user = await users.findOne({
-			email
-		});
-		if (user) {
+		if (await getUserExists(email)) {
 			return fail(400, { invalid: true });
 		}
 
 		const password = await bcrypt.hash(rawPassword, 10);
-		await users.insertOne({
-			username,
-			email,
-			password,
-			role: 'user'
-		});
+		await addUser(username, email, password);
 		redirect(303, '/login');
 	}
 };

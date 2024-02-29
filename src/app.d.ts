@@ -11,6 +11,7 @@ declare namespace App {
 			userId: string;
 			name: string;
 			role: string;
+			avatar: string;
 		};
 	}
 }

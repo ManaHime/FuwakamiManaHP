@@ -1,24 +1,17 @@
 import db from '$db/db';
 import { ObjectId } from 'mongodb';
 
-export interface User {
-	_id: string;
-	username: string;
-	email: string;
-	role: 'admin' | 'user';
-}
-
-export const users = db.collection('users');
+export const userCollection = db.collection('users');
 const userAuthTokens = db.collection('userAuthTokens');
 
 export const getUserByEmail = async (email: string) => {
-	return await users.findOne({ email });
+	return await userCollection.findOne({ email });
 };
 
 export const getUserBySession = async (userAuthToken: string) => {
 	const tokenDoc = await userAuthTokens.findOne({ token: userAuthToken });
 	if (!tokenDoc) return null;
-	return await users.findOne(
+	return await userCollection.findOne(
 		{
 			_id: tokenDoc.userId
 		},
@@ -29,7 +22,7 @@ export const getUserBySession = async (userAuthToken: string) => {
 };
 
 export const getUserId = async (userToken: string) => {
-	const userId = await users.findOne(
+	const userId = await userCollection.findOne(
 		{ userAuthTokens: { $in: [userToken] } },
 		{ projection: { _id: 1 } }
 	);
@@ -39,12 +32,15 @@ export const getUserId = async (userToken: string) => {
 
 export const getAllUsers = async () => {
 	try {
-		const res = await users.find({}, { projection: { password: 0, userAuthToken: 0 } }).toArray();
-		const userList = res.map(({ _id, username, email, role }) => ({
+		const res = await userCollection
+			.find({}, { projection: { password: 0, userAuthToken: 0 } })
+			.toArray();
+		const userList = res.map(({ _id, username, email, role, avatar }) => ({
 			_id: _id.toString(),
 			username,
 			email,
-			role
+			role,
+			avatar
 		}));
 		return { response: 'ok', userList };
 	} catch (err) {
@@ -55,7 +51,7 @@ export const getAllUsers = async () => {
 
 export const getUserExists = async (userAuthToken: string) => {
 	try {
-		const user = await users.findOne(
+		const user = await userCollection.findOne(
 			{ userAuthTokens: { $in: [userAuthToken] } },
 			{ projection: { _id: 1 } }
 		);
@@ -70,17 +66,19 @@ export const adminEditUser = async (
 	userId: string,
 	username: string,
 	email: string,
-	role: string
+	role: string,
+	avatar: string
 ) => {
 	try {
 		const parsedId = new ObjectId(userId);
-		const result = await users.updateOne(
+		const result = await userCollection.updateOne(
 			{ _id: parsedId },
 			{
 				$set: {
 					username,
 					email,
-					role
+					role,
+					avatar
 				}
 			}
 		);
@@ -117,4 +115,14 @@ export const removeUserAuthToken = async (userId: string, token: string) => {
 		console.error(err);
 		return false;
 	}
+};
+
+export const addUser = async (username: string, email: string, password: string) => {
+	await userCollection.insertOne({
+		username,
+		email,
+		password,
+		role: 'user',
+		avatar: ''
+	});
 };

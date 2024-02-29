@@ -12,12 +12,12 @@
 
 	function modalAdminUserEditForm(e: CustomEvent<string[]>): void {
 		const metaDetail = e.detail;
-		if (metaDetail.length !== 4) {
+		if (metaDetail.length !== 5) {
 			console.error('Invalid meta detail');
 			return;
 		}
-		const [userId, userName, email, role] = metaDetail;
-		const editableUser = { userId, userName, email, role };
+		const [userId, userName, email, role, avatar] = metaDetail;
+		const editableUser = { userId, userName, email, role, avatar };
 
 		const c: ModalComponent = { ref: ModalAdminUserEditForm };
 		const modal: ModalSettings = {
