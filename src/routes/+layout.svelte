@@ -35,7 +35,6 @@
 		event: 'focus-click',
 		target: 'avatarMenuPopup',
 		placement: 'bottom',
-		closeQuery: '.listbox-item'
 	};
 	const getUserInitial = () => {
 		console.log(data.user);
@@ -81,6 +80,9 @@
 					</button>
 					<div class="w-48 py-2 shadow-xl card" data-popup="avatarMenuPopup">
 						<ul class="list-nav">
+                            <li>
+                                <a href="/profile" class="!rounded-md">Profile</a>
+                            </li>
 							<li>
 								<form action="/logout" method="POST" use:enhance>
 									<button class="w-full !rounded-md" type="submit">{translation.logout}</button>
