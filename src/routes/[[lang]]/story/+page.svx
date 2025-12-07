@@ -1,16 +1,19 @@
 <style>
-	:global(p) {
-		margin-top: 1em;
-		margin-bottom: 1em;
+	/* Paragraph spacing - blank lines create new paragraphs with spacing */
+	:global(p + p) {
+		margin-top: 1.5em;
 	}
 	:global(p:first-of-type) {
 		margin-top: 0;
 	}
+	
+	/* Headings */
 	:global(h1) {
 		font-size: 2.25rem;
 		line-height: 2.5rem;
 		font-weight: 700;
 		margin-bottom: 2rem;
+		margin-top: 2rem;
 	}
 	:global(h2) {
 		font-size: 1.875rem;
@@ -19,6 +22,14 @@
 		margin-top: 2rem;
 		margin-bottom: 1rem;
 	}
+	:global(h1 + p),
+	:global(h2 + p) {
+		margin-top: 0;
+	}
+
+    h1, h2, p {
+        padding-left: 2rem;
+    }
 </style>
 
 # 異世界で空を知らない姫ですが、生きるために、魔法を使います
@@ -26,6 +37,7 @@
 ## 第1話　この世界には、空がない
 
 おかしい。
+
 
 ……いや。
 
