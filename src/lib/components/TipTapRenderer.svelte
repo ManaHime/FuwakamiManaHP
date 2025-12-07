@@ -6,14 +6,20 @@
 
 	let element: HTMLElement | null = null; // Plain HTMLElement
 	let editor: Editor | null = null; // Instance of Editor
-	export let content: string;
+	let { content }: { content: string } = $props();
 
 	onMount(() => {
 		if (element) {
 			// Ensure element is available
+			// StarterKit already includes Link, so we configure it to exclude Link and add it separately
 			editor = new Editor({
 				element, // DOM element reference
-				extensions: [StarterKit, Link],
+				extensions: [
+					StarterKit.configure({
+						link: false // Exclude Link from StarterKit to avoid duplicate
+					}),
+					Link
+				],
 				editable: false,
 				editorProps: {
 					attributes: {
@@ -33,4 +39,4 @@
 	});
 </script>
 
-<div bind:this={element} />
+<div bind:this={element}></div>

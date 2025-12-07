@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Avatar } from '@skeletonlabs/skeleton';
+	import { Avatar } from '@skeletonlabs/skeleton-svelte';
 
-export let data;
-$: user = data.user;
+	let { data } = $props();
+	let user = $derived(data.user);
 </script>
 
 <div class="flex flex-col gap-5 py-10 place-items-center 2xl:mr-52">
@@ -15,7 +15,7 @@ $: user = data.user;
 					src={user.avatar}
 					width="w-32"
 					rounded="rounded-full"
-					border="border-4 border-surface-300-600-token hover:!border-primary-500"
+					border="border-4 border-surface-300-700 hover:!border-primary-500"
 					cursor="cursor-pointer"
 				/>
 				<h1 class="h1 self-center">{user.name}</h1>

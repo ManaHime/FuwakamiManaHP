@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Table, getModalStore } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types.js';
 	import ModalAdminUserEditForm from '$lib/components/FormModal.svelte';
-	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-	export let data: PageData;
+	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton-svelte';
+	let { data }: { data: PageData } = $props();
 
-	$: ({ userTable } = data);
+	let userTable = $derived(data.userTable);
 
 	const modalStore = getModalStore();
 

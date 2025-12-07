@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let data;
-	let streamData = data.streamData;
+	let { data } = $props();
+	let streamData = $derived(data.streamData);
 	console.log(streamData);
 </script>
 

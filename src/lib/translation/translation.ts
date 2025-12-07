@@ -40,6 +40,7 @@ export const NavTranslation = {
 	ja: {
 		lang: 'ja',
 		home: 'ホーム',
+		story: 'ストーリー',
 		chattori: 'チャットトリ',
 		blog: 'ブログ',
 		wiki: 'Wiki',
@@ -59,6 +60,7 @@ export const NavTranslation = {
 	en: {
 		lang: 'en',
 		home: 'Home',
+		story: 'Story',
 		chattori: 'ChatTori',
 		blog: 'Blog',
 		wiki: 'Wiki',

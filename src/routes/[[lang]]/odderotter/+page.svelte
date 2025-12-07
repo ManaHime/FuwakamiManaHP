@@ -37,25 +37,25 @@
 			<img src="/images/odder-otter-community.png" alt="Odder Otter Banner" loading="lazy" />
 			<div
 				class="p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center"
-				on:mouseover={autoScrollOff}
-				on:focus={autoScrollOff}
-				on:mouseout={autoScrollOn}
-				on:blur={autoScrollOn}
+				onmouseover={autoScrollOff}
+				onfocus={autoScrollOff}
+				onmouseout={autoScrollOn}
+				onblur={autoScrollOn}
 				role="region"
 				aria-label="Image carousel"
 			>
 				<!-- Button: Left -->
-				<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
-					<i class="fa-solid fa-arrow-left" />
+				<button type="button" class="btn-icon preset-filled-primary" onclick={carouselLeft} aria-label="Previous image">
+					<i class="fa-solid fa-arrow-left"></i>
 				</button>
 				<!-- Full Images -->
 				<div
 					bind:this={elemCarousel}
 					class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
 				>
-					{#each imgIds as imgId}
+					{#each imgIds as imgId (imgId)}
 						<img
-							class="snap-center w-[1024px] rounded-container-token"
+							class="snap-center w-[1024px] rounded-container"
 							src="/images/{imgId}.jpg"
 							alt={imgId}
 							loading="lazy"
@@ -63,8 +63,8 @@
 					{/each}
 				</div>
 				<!-- Button: Right -->
-				<button type="button" class="btn-icon variant-filled" on:click={carouselRight}>
-					<i class="fa-solid fa-arrow-right" />
+				<button type="button" class="btn-icon preset-filled-primary" onclick={carouselRight} aria-label="Next image">
+					<i class="fa-solid fa-arrow-right"></i>
 				</button>
 			</div>
 			<p>

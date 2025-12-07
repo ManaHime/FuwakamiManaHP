@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { TabGroup, TabAnchor } from '@skeletonlabs/skeleton';
+	import { Tabs } from '@skeletonlabs/skeleton-svelte';
 </script>
 
 {#if $page.data.user.role === 'admin'}
-	<TabGroup>
-		<TabAnchor href="/admin" selected={$page.url.pathname === '/admin'}>Admin</TabAnchor>
-		<TabAnchor href="/admin/new-post" selected={$page.url.pathname === '/admin/new-post'}
-			>Blog</TabAnchor
+	<Tabs>
+		<Tabs.Control href="/admin" selected={$page.url.pathname === '/admin'}>Admin</Tabs.Control>
+		<Tabs.Control href="/admin/new-post" selected={$page.url.pathname === '/admin/new-post'}
+			>Blog</Tabs.Control
 		>
-		<TabAnchor href="/admin/users" selected={$page.url.pathname === '/admin/users'}>Users</TabAnchor
+		<Tabs.Control href="/admin/users" selected={$page.url.pathname === '/admin/users'}>Users</Tabs.Control
 		>
-		<TabAnchor href="/admin/discord-bot" selected={$page.url.pathname === '/admin/discord-bot'}
-			>Discord Bot</TabAnchor
+		<Tabs.Control href="/admin/discord-bot" selected={$page.url.pathname === '/admin/discord-bot'}
+			>Discord Bot</Tabs.Control
 		>
-	</TabGroup>
+	</Tabs>
 	<slot />
 {/if}

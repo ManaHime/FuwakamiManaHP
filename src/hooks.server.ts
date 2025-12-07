@@ -1,6 +1,6 @@
 import { start_mongo } from '$lib/db/db';
 import type { Handle } from '@sveltejs/kit';
-import { getUserBySession } from '$db/users/users';
+import { getUserBySession } from '$lib/db/users/users';
 
 start_mongo()
 	.then(() => {

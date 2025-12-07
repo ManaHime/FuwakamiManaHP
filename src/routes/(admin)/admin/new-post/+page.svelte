@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import Tiptap from '$lib/components/Tiptap.svelte';
-	let textContent: string;
+	let textContent = $state<string>('');
 </script>
 
 <div class="flex flex-col max-w-md m-auto h-1/2">
 	<h1>Post new post</h1>
 	<!-- 
 				<button
-					class="chip variant-soft-surface"
+					class="chip preset-tonal-surface"
 					on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
 					class:active={editor.isActive('heading', { level: 2 })}
 				>
 					H2
 				</button>
 				<button
-					class="chip variant-soft-surface"
+					class="chip preset-tonal-surface"
 					on:click={() => editor.chain().focus().setParagraph().run()}
 					class:active={editor.isActive('paragraph')}
 				>
@@ -50,7 +50,7 @@
 	<form class="flex flex-col" method="POST" use:enhance>
 		<input class="input" name="postTitle" type="text" />
 		<Tiptap bind:textContent />
-		<button type="submit" name="postBody" class="btn variant-soft-primary" value={textContent}
+		<button type="submit" name="postBody" class="btn preset-tonal-primary" value={textContent}
 			>Submit</button
 		>
 	</form>

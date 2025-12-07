@@ -1,7 +1,6 @@
 import type { PageServerLoad, Actions } from './$types';
 import { adminEditUser, getAllUsers } from '$db/users/users';
-import { tableMapperValues } from '@skeletonlabs/skeleton';
-import type { TableSource } from '@skeletonlabs/skeleton';
+import type { TableSource } from '@skeletonlabs/skeleton-svelte';
 
 export const load: PageServerLoad = async () => {
 	const res = await getAllUsers();

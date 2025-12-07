@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { getModalStore } from '@skeletonlabs/skeleton';
-
-	// Props
+		// Props
 	/** Exposes parent props to this component. */
 	export let parent: any;
 
@@ -15,7 +13,7 @@
 	// Base Classes
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
-	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
+	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container';
 </script>
 
 {#if $modalStore[0]}

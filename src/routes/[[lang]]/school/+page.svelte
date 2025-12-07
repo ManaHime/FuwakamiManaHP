@@ -9,7 +9,7 @@
 			<p class="!text-xs">Author: ふわかみ・まな</p>
 			<p class="!text-xs">Posted on: 2023年８月3日</p>
 		</div>
-		<div class="p-5 card variant-soft">
+		<div class="p-5 card preset-tonal">
 			<h2 class="h2">［序論］</h2>
 
 			<p>

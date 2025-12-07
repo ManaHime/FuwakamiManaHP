@@ -1,4 +1,4 @@
-import db from '$db/db';
+import db from '$lib/db/db';
 import { ObjectId } from 'mongodb';
 
 export const userCollection = db.collection('users');
@@ -51,11 +51,9 @@ export const getAllUsers = async () => {
 
 export const getUserExists = async (userAuthToken: string) => {
 	try {
-		const user = await userCollection.findOne(
-			{ userAuthTokens: { $in: [userAuthToken] } },
-			{ projection: { _id: 1 } }
-		);
-		return !!user; // !! converts to boolean ( ! makes it false if exist and ! reverses it to true)
+		// Check if the token exists in the userAuthTokens collection
+		const tokenDoc = await userAuthTokens.findOne({ token: userAuthToken });
+		return !!tokenDoc; // !! converts to boolean
 	} catch (err) {
 		console.error(err);
 		return false;

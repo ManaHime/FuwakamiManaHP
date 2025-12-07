@@ -5,28 +5,20 @@
 
 	import type { ActionData } from './$types';
 	import { enhance } from '$app/forms';
-	export let form: ActionData;
+	let { form, data }: { form: ActionData; data: any } = $props();
+	let translation = $derived(data.translation);
 
-	export let data;
-	$: translation = data.translation;
-
-	let username = '';
-	let email = '';
-	let password = '';
-	let confirmPassword = '';
-	let formDisabled = true;
-
-	$: if (
+	let username = $state('');
+	let email = $state('');
+	let password = $state('');
+	let confirmPassword = $state('');
+	let formDisabled = $derived(
 		username !== '' &&
 		email !== '' &&
 		password !== '' &&
 		password === confirmPassword &&
 		(strengthDescription === 'Good' || strengthDescription === 'OK')
-	) {
-		formDisabled = false;
-	} else {
-		formDisabled = true;
-	}
+	);
 
 	const { translations } = zxcvbnEnPackage;
 	const { adjacencyGraphs: graphs, dictionary: commonDictionary } = zxcvbnCommonPackage;
@@ -39,22 +31,21 @@
 	};
 	zxcvbnOptions.setOptions(options);
 
-	$: ({ score } = zxcvbn(password));
+	let score = $derived.by(() => zxcvbn(password).score);
 
-	let strengthDescription = 'Low';
-	$: switch (score) {
-		case 3:
-			strengthDescription = 'OK';
-			break;
-		case 4:
-			strengthDescription = 'Good';
-			break;
-		case 0:
-		case 1:
-		case 2:
-		default:
-			strengthDescription = 'Low';
-	}
+	let strengthDescription = $derived.by(() => {
+		switch (score) {
+			case 3:
+				return 'OK';
+			case 4:
+				return 'Good';
+			case 0:
+			case 1:
+			case 2:
+			default:
+				return 'Low';
+		}
+	});
 </script>
 
 <div class="flex flex-wrap h-full place-content-center 2xl:mr-52">
@@ -62,7 +53,7 @@
 		<div class="flex flex-col justify-around px-8 pb-8 card gap">
 			<h1 class="p-8 text-center uppercase h1">{translation.title}</h1>
 			<form class="flex flex-col gap-4" method="POST" use:enhance>
-				<div class="space-y-4 border border-surface-500 p-7 rounded-container-token">
+				<div class="space-y-4 border border-surface-500 p-7 rounded-container">
 					<input
 						class="text-center rounded-md input"
 						name="username"
@@ -107,10 +98,10 @@
 						high="2.9"
 						optimum="4"
 						max="4"
-					/>
+					></meter>
 				</div>
 				<button
-					class="w-full mt-2 rounded-md btn variant-filled-primary"
+					class="w-full mt-2 rounded-md btn preset-filled-primary"
 					id="registerBtn"
 					type="submit"
 					disabled={formDisabled}>{translation.submit}</button

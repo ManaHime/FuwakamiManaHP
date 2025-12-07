@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
-	import { LightSwitch, getDrawerStore } from '@skeletonlabs/skeleton';
 
 	interface NavTranslation {
 		lang: string;
 		home: string;
+		story: string;
 		chattori: string;
 		blog: string;
 		wiki: string;
@@ -23,14 +23,19 @@
 		logout: string;
 	}
 
-	const drawerStore = getDrawerStore();
+	let {
+		translation = $bindable(),
+		onClose
+	}: { translation: NavTranslation; onClose?: () => void } = $props();
 
 	function closeDrawer() {
-		drawerStore.close();
+		onClose?.();
 	}
-	export let translation: NavTranslation;
-	$: classesActive = (href: string) => (href === $page.url.pathname ? '!variant-soft-primary' : '');
-	$: langPageSwitch = $page.url.pathname.replace(`/${translation.lang}`, '') || '/';
+
+	const classesActive = $derived.by(
+		() => (href: string) => (href === $page.url.pathname ? '!preset-tonal-primary' : '')
+	);
+	const langPageSwitch = $derived($page.url.pathname.replace(`/${translation.lang}`, '') || '/');
 </script>
 
 {#key $page.params}
@@ -40,59 +45,66 @@
 				<a
 					href="/{translation.lang}"
 					class={classesActive('/' + translation.lang + '')}
-					on:click={closeDrawer}>{translation.home}</a
+					onclick={closeDrawer}>{translation.home}</a
+				>
+			</li>
+			<li>
+				<a
+					href="/{translation.lang}/story"
+					class={classesActive('/' + translation.lang + '/story')}
+					onclick={closeDrawer}>{translation.story}</a
 				>
 			</li>
 			<li>
 				<a
 					href="/{translation.lang}/chattori"
 					class={classesActive('/' + translation.lang + '/chattori')}
-					on:click={closeDrawer}>{translation.chattori}</a
+					onclick={closeDrawer}>{translation.chattori}</a
 				>
 			</li>
 			<li>
 				<a
 					href="/{translation.lang}/blog"
 					class={classesActive('/' + translation.lang + '/blog')}
-					on:click={closeDrawer}>{translation.blog}</a
+					onclick={closeDrawer}>{translation.blog}</a
 				>
 			</li>
 			<li>
 				<a
 					href="/{translation.lang}/wiki"
 					class={classesActive('/' + translation.lang + '/wiki')}
-					on:click={closeDrawer}>{translation.wiki}</a
+					onclick={closeDrawer}>{translation.wiki}</a
 				>
 			</li>
 			<li>
 				<a
 					href="/{translation.lang}/portfolio"
 					class={classesActive('/' + translation.lang + '/portfolio')}
-					on:click={closeDrawer}>{translation.portfolio}</a
+					onclick={closeDrawer}>{translation.portfolio}</a
 				>
 			</li>
 			<li>
 				<a
 					href="/{translation.lang}/school"
 					class={classesActive('/' + translation.lang + '/contact')}
-					on:click={closeDrawer}>{translation.university}</a
+					onclick={closeDrawer}>{translation.university}</a
 				>
 			</li>
 			<li>
 				<a
 					href="/{translation.lang}/contact"
 					class={classesActive('/' + translation.lang + '/contact')}
-					on:click={closeDrawer}>{translation.contact}</a
+					onclick={closeDrawer}>{translation.contact}</a
 				>
 			</li>
 		</ul>
 		<hr />
 		<ul>
 			<li>
-				<a href="https://twitter.com/FuwakamiMana" on:click={closeDrawer}>{translation.twitter}</a>
+				<a href="https://twitter.com/FuwakamiMana" onclick={closeDrawer}>{translation.twitter}</a>
 			</li>
 			<li>
-				<a href="https://www.youtube.com/@FuwakamiMana" on:click={closeDrawer}
+				<a href="https://www.youtube.com/@FuwakamiMana" onclick={closeDrawer}
 					>{translation.youtube}</a
 				>
 			</li>
@@ -103,7 +115,7 @@
 				<a href="/{translation.lang}/odderotter">{translation.odderotter}</a>
 			</li>
 			<li>
-				<a href="https://discord.gg/FDymkDsaxk" on:click={closeDrawer}>{translation.discord}</a>
+				<a href="https://discord.gg/FDymkDsaxk" onclick={closeDrawer}>{translation.discord}</a>
 			</li>
 		</ul>
 		<hr />
@@ -113,40 +125,40 @@
 					<a
 						href="/{translation.lang}/login"
 						class={'/' + classesActive('/login')}
-						on:click={closeDrawer}>{translation.login}</a
+						onclick={closeDrawer}>{translation.login}</a
 					>
 				</li>
 				<li>
 					<a
 						href="/{translation.lang}/register"
 						class={'/' + classesActive('/register')}
-						on:click={closeDrawer}>{translation.register}</a
+						onclick={closeDrawer}>{translation.register}</a
 					>
 				</li>
 			{/if}
 			{#if $page.data.user}
 				{#if $page.data.user.role === 'admin'}
 					<li>
-						<a href="/admin" class={'/' + classesActive('/admin')} on:click={closeDrawer}
+						<a href="/admin" class={'/' + classesActive('/admin')} onclick={closeDrawer}
 							>{translation.admin}</a
 						>
 					</li>
 				{/if}
 				<form action="/logout" method="POST" use:enhance>
-					<button class="w-full" type="submit" on:click={closeDrawer}>{translation.logout}</button>
+					<button class="w-full" type="submit" onclick={closeDrawer}>{translation.logout}</button>
 				</form>
 			{/if}
 			{#if translation.lang === 'ja'}
 				<li>
-					<a href="/en{langPageSwitch}" on:click={closeDrawer}>English</a>
+					<a href="/en{langPageSwitch}" onclick={closeDrawer}>English</a>
 				</li>
 			{:else}
 				<li>
-					<a href="/ja{langPageSwitch}" on:click={closeDrawer}>日本語</a>
+					<a href="/ja{langPageSwitch}" onclick={closeDrawer}>日本語</a>
 				</li>
 			{/if}
 
-			<li><LightSwitch on:click={closeDrawer} /></li>
+			<!-- <li><LightSwitch onclick={closeDrawer} /></li> -->
 		</ul>
 	</nav>
 {/key}
