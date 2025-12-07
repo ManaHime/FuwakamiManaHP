@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { initUserStreamList } from '$lib/youtube/youtube';
+import { initUserStreamList } from '$lib/youtube/youtube.server';
 
 export const GET: RequestHandler = async (request) => {
 	const user = request.locals?.user;

@@ -1,5 +1,5 @@
 import { getAllStreamByUserId, getYouTubeExists } from '$db/youtube/youtube.js';
-import { getYouTubeURL } from '$lib/youtube/youtube';
+import { getYouTubeURL } from '$lib/youtube/youtube.server';
 
 export const load = async (params) => {
 	const user = params.locals.user;
