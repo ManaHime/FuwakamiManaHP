@@ -1,17 +1,24 @@
 import type { PageServerLoad, Actions } from './$types';
 import { adminEditUser, getAllUsers } from '$db/users/users';
-import type { TableSource } from '@skeletonlabs/skeleton-svelte';
+
+function tableMapperValues<T extends Record<string, any>>(
+	data: T[],
+	keys: (keyof T)[]
+): string[][] {
+	return data.map((item) => keys.map((key) => String(item[key] ?? '')));
+}
 
 export const load: PageServerLoad = async () => {
 	const res = await getAllUsers();
 	if (res?.response !== 'error' && res?.userList) {
 		const userList = res.userList;
-		const userTable: TableSource = {
+		const userTable = {
 			head: ['User id', 'Username', 'Email', 'role', 'avatar'],
 			body: tableMapperValues(userList, ['_id', 'username', 'email', 'role', 'avatar'])
 		};
 		return { userTable };
 	}
+	return { userTable: { head: [], body: [] } };
 };
 
 export const actions: Actions = {

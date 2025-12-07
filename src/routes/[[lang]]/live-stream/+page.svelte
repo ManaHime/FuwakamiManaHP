@@ -1,7 +1,9 @@
 <script lang="ts">
 	let { data } = $props();
 	let streamData = $derived(data.streamData);
-	console.log(streamData);
+	$effect(() => {
+		console.log(streamData);
+	});
 </script>
 
 <h1 class="h1 text-center 2xl:mr-52 py-10">Live Stream / 生放送</h1>

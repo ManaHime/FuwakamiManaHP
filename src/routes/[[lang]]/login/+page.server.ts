@@ -9,10 +9,13 @@ import { addUserAuthToken, getUserByEmail } from '$db/users/users';
 type Language = keyof typeof LoginTranslation;
 
 export const load = async ({ params, request }) => {
-	const lang: Language = (params.lang as Language) || getPreferredLanguage(request.headers.get('accept-language')) || 'en';
+	const lang: Language =
+		(params.lang as Language) ||
+		getPreferredLanguage(request.headers.get('accept-language')) ||
+		'en';
 	return {
-        translation: LoginTranslation[lang],
-    };
+		translation: LoginTranslation[lang]
+	};
 };
 
 export const actions: Actions = {

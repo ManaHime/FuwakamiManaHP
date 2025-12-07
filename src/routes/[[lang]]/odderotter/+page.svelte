@@ -45,7 +45,12 @@
 				aria-label="Image carousel"
 			>
 				<!-- Button: Left -->
-				<button type="button" class="btn-icon preset-filled-primary" onclick={carouselLeft} aria-label="Previous image">
+				<button
+					type="button"
+					class="btn-icon preset-filled-primary"
+					onclick={carouselLeft}
+					aria-label="Previous image"
+				>
 					<i class="fa-solid fa-arrow-left"></i>
 				</button>
 				<!-- Full Images -->
@@ -63,7 +68,12 @@
 					{/each}
 				</div>
 				<!-- Button: Right -->
-				<button type="button" class="btn-icon preset-filled-primary" onclick={carouselRight} aria-label="Next image">
+				<button
+					type="button"
+					class="btn-icon preset-filled-primary"
+					onclick={carouselRight}
+					aria-label="Next image"
+				>
 					<i class="fa-solid fa-arrow-right"></i>
 				</button>
 			</div>

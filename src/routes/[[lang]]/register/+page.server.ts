@@ -17,10 +17,13 @@ export const load = async function ({ locals, params, request }) {
 	if (locals.user) {
 		redirect(302, '/');
 	}
-	const lang: Language = (params.lang as Language) || getPreferredLanguage (request.headers.get('accept-language')) || 'en';
+	const lang: Language =
+		(params.lang as Language) ||
+		getPreferredLanguage(request.headers.get('accept-language')) ||
+		'en';
 	return {
-        translation: RegistrationTranslation[lang],
-    };
+		translation: RegistrationTranslation[lang]
+	};
 };
 
 const isPasswordStrenthOk = (password: string) => {

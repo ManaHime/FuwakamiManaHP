@@ -12,13 +12,6 @@
 	let email = $state('');
 	let password = $state('');
 	let confirmPassword = $state('');
-	let formDisabled = $derived(
-		username !== '' &&
-		email !== '' &&
-		password !== '' &&
-		password === confirmPassword &&
-		(strengthDescription === 'Good' || strengthDescription === 'OK')
-	);
 
 	const { translations } = zxcvbnEnPackage;
 	const { adjacencyGraphs: graphs, dictionary: commonDictionary } = zxcvbnCommonPackage;
@@ -46,6 +39,14 @@
 				return 'Low';
 		}
 	});
+
+	let formDisabled = $derived(
+		username !== '' &&
+			email !== '' &&
+			password !== '' &&
+			password === confirmPassword &&
+			(strengthDescription === 'Good' || strengthDescription === 'OK')
+	);
 </script>
 
 <div class="flex flex-wrap h-full place-content-center 2xl:mr-52">

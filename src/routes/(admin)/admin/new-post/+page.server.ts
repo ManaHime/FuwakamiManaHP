@@ -11,6 +11,10 @@ export const actions: Actions = {
 			return fail(400, { invalid: true });
 		}
 
+		if (!locals.user) {
+			return fail(401, { invalid: true });
+		}
+
 		const blogPost: BlogPost = {
 			title,
 			content,
