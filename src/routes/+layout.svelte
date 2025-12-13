@@ -123,6 +123,6 @@
 
 	<!-- Footer -->
 	<footer class="p-2 text-sm text-center opacity-50 2xl:mr-52">
-		<p>©2023-2024 Fuwakami Mana. All rights reserved.</p>
+		<p>©2023-{new Date().getFullYear()} Fuwakami Mana. All rights reserved.</p>
 	</footer>
 </div>
