@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ params, request }) => {
 
 	// Get chapter number from params
 	const chapterParam = params.chapter;
-	
+
 	// Parse chapter number - "0" displays the prologue
 	const chapterNumber = parseInt(chapterParam, 10);
 	if (isNaN(chapterNumber) || chapterNumber < 0) {
@@ -35,7 +35,7 @@ export const load: PageServerLoad = async ({ params, request }) => {
 	// Get available chapters for navigation
 	const availableChapters = await getAvailableChapters(lang);
 	const sortedChapters = availableChapters.sort((a, b) => a - b);
-	
+
 	// Find next and previous chapter numbers
 	const currentIndex = sortedChapters.indexOf(chapterNumber);
 	const prevChapter = currentIndex > 0 ? sortedChapters[currentIndex - 1] : null;
@@ -49,6 +49,6 @@ export const load: PageServerLoad = async ({ params, request }) => {
 		nextChapter: nextChapter !== null ? { number: nextChapter, url: `/${lang}/story/${nextChapter}` } : null,
 		indexUrl: `/${lang}/story`,
 		title: '異世界で空を知らない姫ですが、生きるために、魔法を使います',
-		titleEn: 'The Princess Who Doesn\'t Know the Sky in Another World, But Uses Magic to Survive'
+		titleEn: "I'm a Princess Who Doesn't Know the Sky in This Other World, but I Will Use Magic to Survive  "
 	};
 };
