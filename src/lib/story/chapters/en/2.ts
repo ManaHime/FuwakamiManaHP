@@ -4,7 +4,7 @@ export const chapter: Chapter = {
 	title: 'Chapter 2: LOST',
 	content: `The roar from moments ago still echoed deep within my ears.  
 My body twitched spasmodically.  
-As if—I still hadn't grasped that I'd fallen.  
+As if… I still hadn't grasped that I'd fallen.  
 
 Something touched my body.  
 
@@ -20,7 +20,7 @@ The lingering trace of sunlight.
 The memory of wind.  
 The faint imprint of a living being's body heat.  
 
-—Yet this.  
+…Yet this.  
 
 Just cold.  
 Just hard.  
@@ -31,7 +31,7 @@ One moment, close.
 The next, distant.  
 
 It was as if the world itself  
-was wavering—  
+was wavering…  
 whether to wake me,  
 or to let me sink like this.
 
@@ -39,7 +39,7 @@ I tried to breathe, but my chest creaked deep inside.
 It hurt.  
 As if my lungs were rejecting the air.
 
-...Calm down.
+…Calm down.
 
 I focused on my breathing.  
 Inhale. Exhale.  
@@ -47,7 +47,7 @@ Counting should bring my thoughts back.
 
 One.  
 Two.  
-—Three.
+…Three.
 
 There, it broke off.
 
@@ -55,10 +55,10 @@ The fingers trying to count grasped at air.
 Consciousness slipped away.  
 As if my very heart itself was being dragged far away.
 
-For an instant—  
+For an instant…  
 “I” nearly vanished.  
 
-And then—  
+And then…  
 
 The world shifted.  
 
@@ -73,14 +73,14 @@ Explosions echoed in the distance.
 Guards gathered throughout the palace.  
 Screams reached us from beyond the walls.  
 
-...The situation was bad.
+…The situation was bad.
 
 The intruders were advancing steadily.
 
 I stood beside the teleportation gate.  
 My mother was beside me.
 
-At that instant—
+At that instant…
 
 Everything froze.
 
@@ -89,10 +89,10 @@ A low, heavy vibration shook the air.
 The next moment,  
 a blinding flash engulfed the world.
 
-I reflexively—  
+I reflexively…  
 turned my gaze toward the ley line.
 
-...It was gone.
+…It was gone.
 
 What should have been there  
 had vanished.
@@ -101,14 +101,14 @@ The structure crumbled, collapsing like dust.
 Quietly, quietly.  
 Yet it felt as if the entire world was screaming.
 
-—Stop.
+…Stop.
 
 Deep within my chest, something snapped.  
 A feeling of being severed.  
-Like a hole had been pierced through my soul—  
+Like a hole had been pierced through my soul…  
 that sensation.
 
-And then—
+And then…
 
 Someone's hand touched me.
 
@@ -131,15 +131,15 @@ I couldn't tell if it was from cold or fear.
 
 My vision returned all at once.
 
-...Too vivid.  
-...Too loud.
+…Too vivid.  
+…Too loud.
 
 “#$+& #@%?”
 
 The figure I'd seen earlier was peering down at me from above.
 
 Close.  
-...Too close.
+…Too close.
 
 They were saying something.  
 But I couldn't understand a single word.
@@ -164,13 +164,13 @@ The sequence of sounds.
 The pauses.  
 The inflection.
 
-...But it's different.
+…But it's different.
 
 Similar, yet fundamentally different.  
 With incantations, my inner self reacts.  
 Just hearing the sound makes my chest tremble faintly.
 
-This... nothing happens.  
+This… nothing happens.  
 
 Just a voice.  
 Just words.  
@@ -184,7 +184,7 @@ Or perhaps, fear.
 
 My breath catches.  
 
-...If he's an enemy.  
+…If he's an enemy.  
 
 I have to escape.  
 Right now.
@@ -193,12 +193,12 @@ Desperately, I scan my surroundings.
 
 Above me, it's pitch black, yet the area around me is unnaturally bright.  
 The light reflects off the wet ground.  
-“Stone” slippery from the cold rain—no, not stone, a smooth path.  
+“Stone” slippery from the cold rain…no, not stone, a smooth path.  
 
 Wind blows through.  
 It carries a faint, burnt-like smell.  
 Smoke? Fire?  
-Or—the scent of something I don't know.
+Or…the scent of something I don't know.
 
 Hovering high above was a giant slab of light.  
 A square “window”.  
@@ -206,7 +206,7 @@ Inside, colors shifted.
 Patterns flowed.  
 Things resembling letters were arranged.  
 
-...Like spell characters.  
+…Like spell characters.  
 
 But no.  
 There was absolutely no trace of magic.  
@@ -220,16 +220,16 @@ Each time they passed, puddles splashed.
 Fine droplets flew, stinging my cheeks.  
 The roar echoed deep in my gut, making my body tremble.
 
-...This is no place to stop.
+…This is no place to stop.
 
-Then—  
+Then…  
 A narrow, dark passage caught my eye.  
 
 Cramped.  
 But it led underground.  
 Beyond the entrance, stairs descending downward were faintly visible.  
 
-...If it's that.  
+…If it's that.  
 
 Those beasts can't get in.  
 A human body could slip through.  
@@ -241,7 +241,7 @@ I don't know why.
 Maybe he was trying to help.  
 Maybe he was trying to catch me.
 
-Either way—  
+Either way…  
 I had no time to find out.  
 
 I couldn't stay here.  
@@ -260,7 +260,7 @@ Still, I couldn't stop.
 
 I darted into the passageway and looked back.  
 
-...Nothing.  
+…Nothing.  
 
 He wasn't there anymore.  
 
@@ -273,13 +273,13 @@ I strained my ears.
 No footsteps.  
 No sign of pursuit.
 
-...Where am I?
+…Where am I?
 
-...What does this mean?
+…What does this mean?
 
 Only one thing was clear.
 
-I was—  
+I was…  
 Lost.
 
 From home.  
@@ -289,12 +289,12 @@ Far, far away.
 
 Questions poured out, one after another.
 
-But—  
+But…  
 Before that.  
 
 I realized something far more terrifying.  
 
-...I couldn't feel it.  
+…I couldn't feel it.  
 
 That sensation.  
 
@@ -305,9 +305,9 @@ The presence that should always have been inside me.
 Even when I reached deep into my chest,  
 All that returned was an empty coldness.  
 
-...No way.  
+…No way.  
 
-In this world—  
+In this world…  
 There are no ley lines……?`
 };
 
