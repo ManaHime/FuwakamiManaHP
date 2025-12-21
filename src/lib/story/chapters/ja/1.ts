@@ -2,9 +2,7 @@ import type { Chapter } from '../types';
 
 export const chapter: Chapter = {
 	title: '第1話　この世界には、空がない',
-	content: `第1話　この世界には、空がない
-
-おかしい。
+	content: `おかしい。
 
 ……いや。
 
