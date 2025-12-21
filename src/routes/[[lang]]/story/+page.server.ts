@@ -1,9 +1,8 @@
-import type { PageServerLoad } from './$types';
 import type { Language } from '$lib/story/chapters/types';
 import { getPreferredLanguage } from '$lib/translation/language';
 import { getAvailableChapters, getChapterMetadata } from '$lib/story/chapters/index';
 
-export const load: PageServerLoad = async ({ params, request }) => {
+export const load = async ({ params, request }) => {
 	// Get language from params or fallback to preferred language
 	const lang: Language =
 		(params.lang as Language) ||
@@ -29,7 +28,7 @@ export const load: PageServerLoad = async ({ params, request }) => {
 		lang,
 		chapters,
 		title: '異世界で空を知らない姫ですが、生きるために、魔法を使います',
-		titleEn: 'The Princess Who Doesn\'t Know the Sky in Another World, But Uses Magic to Survive'
+		titleEn: "I'm a Princess Who Doesn't Know the Sky in This Other World, but I Will Use Magic to Survive"
 	};
 };
 
